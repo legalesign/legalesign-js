@@ -34,29 +34,25 @@ export interface Document {
    */
   	group: Group
 
-   /**
-   * The whole template object that the document was made from.
-   */
-    template: Template
+//    /**
+//    * The whole template object that the document was made from.
+//    */
+//     template: Template
 
-	# The ID of template that the document was made from (this is for more efficient mass document queries).
-	sourceTemplateId: ID
-	# The ISO 8601 date format of the time that this resource was created.
-	created: AWSDateTime
-	# The ISO 8601 date format of the time that this resource was modified.
-	modified: AWSDateTime
-	# The participants that received this document (if any)
-	recipients: [Recipient]
-	# The audit log for this document (if any)
-	auditLog: [AuditLogItem]
-	# The name of the sender
-	senderName: String
-	# The email of the sender
-	senderEmail: AWSEmail
-	# The unique identifier of the process that created this document
-	taskId: ID
-}
-
-export namespace Document {
-  export type AvailablePayoutMethod = 'instant' | 'standard';
+// 	# The ID of template that the document was made from (this is for more efficient mass document queries).
+// 	sourceTemplateId: ID
+// 	# The ISO 8601 date format of the time that this resource was created.
+// 	created: AWSDateTime
+// 	# The ISO 8601 date format of the time that this resource was modified.
+// 	modified: AWSDateTime
+// 	# The participants that received this document (if any)
+// 	recipients: [Recipient]
+// 	# The audit log for this document (if any)
+// 	auditLog: [AuditLogItem]
+// 	# The name of the sender
+// 	senderName: String
+// 	# The email of the sender
+// 	senderEmail: AWSEmail
+// 	# The unique identifier of the process that created this document
+// 	taskId: ID
 }
