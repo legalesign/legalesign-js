@@ -1,38 +1,38 @@
-import {StripeConstructor} from '../types';
-import {loadScript, initStripe, LoadStripe} from './shared';
+import {LegalesignConstructor} from '../types';
+import {loadScript, initLegalesign, LoadLegalesign} from './shared';
 
-let stripePromise: Promise<StripeConstructor | null> | null;
+let legalesignPromise: Promise<LegalesignConstructor | null> | null;
 let loadCalled = false;
 
-const getStripePromise: () => Promise<StripeConstructor | null> = () => {
-  if (stripePromise) {
-    return stripePromise;
+const getLegalesignPromise: () => Promise<LegalesignConstructor | null> = () => {
+  if (legalesignPromise) {
+    return legalesignPromise;
   }
 
-  stripePromise = loadScript(null).catch((error) => {
+  legalesignPromise = loadScript(null).catch((error) => {
     // clear cache on error
-    stripePromise = null;
+    legalesignPromise = null;
     return Promise.reject(error);
   });
-  return stripePromise;
+  return legalesignPromise;
 };
 
 // Execute our own script injection after a tick to give users time to do their
 // own script injection.
 Promise.resolve()
-  .then(() => getStripePromise())
+  .then(() => getLegalesignPromise())
   .catch((error) => {
     if (!loadCalled) {
       console.warn(error);
     }
   });
 
-export const loadStripe: LoadStripe = (...args) => {
+export const loadLegalesign: LoadLegalesign = (...args) => {
   loadCalled = true;
   const startTime = Date.now();
 
   // if previous attempts are unsuccessful, will re-load script
-  return getStripePromise().then((maybeStripe) =>
-    initStripe(maybeStripe, args, startTime)
+  return getLegalesignPromise().then((maybeLegalesign) =>
+    initLegalesign(maybeLegalesign, args, startTime)
   );
 };
