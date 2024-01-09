@@ -12,8 +12,8 @@ export interface LoadParams {
 // containing the package.json version
 declare const _VERSION: string;
 
-const V3_URL = 'https://js.stripe.com/v3';
-const V3_URL_REGEX = /^https:\/\/js\.stripe\.com\/v3\/?(\?.*)?$/;
+const V3_URL = 'https://js.legalesign.com/v3';
+const V3_URL_REGEX = /^https:\/\/js\.legalesign\.com\/v3\/?(\?.*)?$/;
 const EXISTING_SCRIPT_MESSAGE =
   'loadStripe.setLoadParameters was called but an existing Stripe.js script already exists in the document; existing script parameters will be used';
 
@@ -45,7 +45,7 @@ const injectScript = (params: null | LoadParams): HTMLScriptElement => {
 
   if (!headOrBody) {
     throw new Error(
-      'Expected document.body not to be null. Stripe.js requires a <body> element.'
+      'Expected document.body not to be null. Legalesign.js requires a <body> element.'
     );
   }
 
@@ -54,12 +54,12 @@ const injectScript = (params: null | LoadParams): HTMLScriptElement => {
   return script;
 };
 
-const registerWrapper = (stripe: any, startTime: number): void => {
-  if (!stripe || !stripe._registerWrapper) {
+const registerWrapper = (legalesign: any, startTime: number): void => {
+  if (!legalesign || !legalesign._registerWrapper) {
     return;
   }
 
-  stripe._registerWrapper({name: 'stripe-js', version: _VERSION, startTime});
+  legalesign._registerWrapper({name: 'legalesign-js', version: _VERSION, startTime});
 };
 
 let stripePromise: Promise<LegalesignConstructor | null> | null = null;
@@ -100,12 +100,12 @@ export const loadScript = (
       return;
     }
 
-    if (window.Stripe && params) {
+    if (window.Legalesign && params) {
       console.warn(EXISTING_SCRIPT_MESSAGE);
     }
 
-    if (window.Stripe) {
-      resolve(window.Stripe);
+    if (window.Legalesign) {
+      resolve(window.Legalesign);
       return;
     }
 
@@ -148,7 +148,7 @@ export const loadScript = (
   });
 };
 
-export const initStripe = (
+export const initLegalesign = (
   maybeStripe: LegalesignConstructor | null,
   args: Parameters<LegalesignConstructor>,
   startTime: number

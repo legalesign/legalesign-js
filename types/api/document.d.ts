@@ -1,4 +1,5 @@
-import {Group} from "./group";
+import { Group } from "./group";
+import { Template } from "./template";
 
 /**
  * The Document object.
@@ -34,10 +35,10 @@ export interface Document {
    */
   	group: Group
 
-//    /**
-//    * The whole template object that the document was made from.
-//    */
-//     template: Template
+   /**
+   * The whole template object that the document was made from.
+   */
+    template: Template
 
 // 	# The ID of template that the document was made from (this is for more efficient mass document queries).
 // 	sourceTemplateId: ID

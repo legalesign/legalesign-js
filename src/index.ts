@@ -36,3 +36,11 @@ export const loadLegalesign: LoadLegalesign = (...args) => {
     initLegalesign(maybeLegalesign, args, startTime)
   );
 };
+
+declare global {
+  interface Window {
+    // Stripe.js must be loaded directly from https://js.stripe.com/v3, which
+    // places a `Stripe` object on the window
+    Legalesign?: LegalesignConstructor;
+  }
+}
