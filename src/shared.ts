@@ -1,8 +1,8 @@
-import {Stripe, StripeConstructor} from '../types';
+import {Legalesign, LegalesignConstructor} from '../types';
 
-export type LoadStripe = (
-  ...args: Parameters<StripeConstructor>
-) => Promise<Stripe | null>;
+export type LoadLegalesign = (
+  ...args: Parameters<LegalesignConstructor>
+) => Promise<Legalesign | null>;
 
 export interface LoadParams {
   advancedFraudSignals: boolean;
@@ -62,7 +62,7 @@ const registerWrapper = (stripe: any, startTime: number): void => {
   stripe._registerWrapper({name: 'stripe-js', version: _VERSION, startTime});
 };
 
-let stripePromise: Promise<StripeConstructor | null> | null = null;
+let stripePromise: Promise<LegalesignConstructor | null> | null = null;
 
 let onErrorListener: (() => void) | null = null;
 let onLoadListener: (() => void) | null = null;
@@ -73,7 +73,7 @@ const onError = (reject: (reason?: any) => void) => () => {
 
 const onLoad = (
   resolve: (
-    value: StripeConstructor | PromiseLike<StripeConstructor | null> | null
+    value: LegalesignConstructor | PromiseLike<LegalesignConstructor | null> | null
   ) => void,
   reject: (reason?: any) => void
 ) => () => {
@@ -86,7 +86,7 @@ const onLoad = (
 
 export const loadScript = (
   params: null | LoadParams
-): Promise<StripeConstructor | null> => {
+): Promise<LegalesignConstructor | null> => {
   // Ensure that we only attempt to load Stripe.js at most once
   if (stripePromise !== null) {
     return stripePromise;
@@ -149,10 +149,10 @@ export const loadScript = (
 };
 
 export const initStripe = (
-  maybeStripe: StripeConstructor | null,
-  args: Parameters<StripeConstructor>,
+  maybeStripe: LegalesignConstructor | null,
+  args: Parameters<LegalesignConstructor>,
   startTime: number
-): Stripe | null => {
+): Legalesign | null => {
   if (maybeStripe === null) {
     return null;
   }
