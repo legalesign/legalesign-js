@@ -15,7 +15,7 @@ declare const _VERSION: string;
 const V3_URL = 'https://js.legalesign.com/v3';
 const V3_URL_REGEX = /^https:\/\/js\.legalesign\.com\/v3\/?(\?.*)?$/;
 const EXISTING_SCRIPT_MESSAGE =
-  'loadStripe.setLoadParameters was called but an existing Stripe.js script already exists in the document; existing script parameters will be used';
+  'loadStripe.setLoadParameters was called but an existing Legalesign.js script already exists in the document; existing script parameters will be used';
 
 export const findScript = (): HTMLScriptElement | null => {
   const scripts = document.querySelectorAll<HTMLScriptElement>(
@@ -68,7 +68,7 @@ let onErrorListener: (() => void) | null = null;
 let onLoadListener: (() => void) | null = null;
 
 const onError = (reject: (reason?: any) => void) => () => {
-  reject(new Error('Failed to load Stripe.js'));
+  reject(new Error('Failed to load Legalesign.js'));
 };
 
 const onLoad = (
@@ -77,10 +77,10 @@ const onLoad = (
   ) => void,
   reject: (reason?: any) => void
 ) => () => {
-  if (window.Stripe) {
-    resolve(window.Stripe);
+  if (window.Legalesign) {
+    resolve(window.Legalesign);
   } else {
-    reject(new Error('Stripe.js not available'));
+    reject(new Error('Legalesign.js not available'));
   }
 };
 
@@ -88,11 +88,11 @@ export const loadScript = (
   params: null | LoadParams
 ): Promise<LegalesignConstructor | null> => {
   // Ensure that we only attempt to load Stripe.js at most once
-  if (stripePromise !== null) {
-    return stripePromise;
+  if (legalesignPromise !== null) {
+    return legalesignPromise;
   }
 
-  stripePromise = new Promise((resolve, reject) => {
+  legalesignPromise = new Promise((resolve, reject) => {
     if (typeof window === 'undefined' || typeof document === 'undefined') {
       // Resolve to null when imported server side. This makes the module
       // safe to import in an isomorphic code base.
@@ -142,24 +142,24 @@ export const loadScript = (
     }
   });
   // Resets stripePromise on error
-  return stripePromise.catch((error) => {
-    stripePromise = null;
+  return legalesignPromise.catch((error) => {
+    legalesignPromise = null;
     return Promise.reject(error);
   });
 };
 
 export const initLegalesign = (
-  maybeStripe: LegalesignConstructor | null,
+  maybeLegalesign: LegalesignConstructor | null,
   args: Parameters<LegalesignConstructor>,
   startTime: number
 ): Legalesign | null => {
-  if (maybeStripe === null) {
+  if (maybeLegalesign === null) {
     return null;
   }
 
-  const stripe = maybeStripe.apply(undefined, args);
-  registerWrapper(stripe, startTime);
-  return stripe;
+  const stripe = maybeLegalesign.apply(undefined, args);
+  registerWrapper(legalesign, startTime);
+  return legalesign;
 };
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
