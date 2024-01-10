@@ -16,23 +16,24 @@ export interface SingleSendSettings {
   groupId: string;
 
   /**
-   *  The template originally used (if any)
+   *  The template UUID originally used (if any), if not supplied you must pass HTML.
    */
   templateId: string | null;
+
   /**
-   * The list of Recipients for the document.
+   * The list of Recipients for the document, you must provide at least 1 recipient.
    */
   recipients: [Recipient];
 
   /**
-   * All the values to fill in on the signer fields
+   * (optional) All the values to fill in on the signer fields (if any).
    */
-  participantFields: [Field];
+  participantFields: [Field] | null;
 
   /**
-   * All the values to fill in on the sender fields
+   * (optional) All the values to fill in on the sender fields (if any).
    */
-  senderFields: [Field];
+  senderFields: [Field] | null;
 
   /**
    * Allow copying of the final document
@@ -45,9 +46,9 @@ export interface SingleSendSettings {
   allowPrinting: boolean;
 
   /**
-   * The tag to apply to the final document in the Legalesign system
+   * (optional) The tag to apply to the final document in the Legalesign system
    */
-  tag: string;
+  tag: string | null;
 
   /**
    * Determines if the recipients will be sent in order or all at the same time
