@@ -1,6 +1,6 @@
 # Legalesign.js ES Module
 
-Allows typescript friendly versions of the Legalesign core objects and basic action calls.
+Allows typescript friendly versions of the Legalesign core objects and Send calls, including single and multi-document.
 
 ## Installation
 
