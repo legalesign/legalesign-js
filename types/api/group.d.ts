@@ -17,7 +17,7 @@ export interface Group {
   /**
    * The organisation to which owns and can administer this group.
    */
-  organisation: Organisation;
+  organisation: Organisation | null;
 
   /**
    * The name of the group.

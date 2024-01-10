@@ -17,17 +17,17 @@ export interface Template {
   /**
    * The title of a document that has been sent to one or more signers.
    */
-  name: String | null;
+  name: string | null;
 
   /**
    * A short lease url for downloading or streaming the document.
    */
-  link: String | null;
+  link: string | null;
 
   /**
    * City/District/Suburb/Town/Village.
    */
-  status: String;
+  status: string;
 
   /**
    * The group object associated (currently) with this document.

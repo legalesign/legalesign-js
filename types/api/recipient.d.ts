@@ -36,7 +36,7 @@ export interface Recipient {
   /**
    * The role name that the recipient plays when looking at the document.
    */
-  role: String;
+  role: string;
 
   /**
    * The role type in lowercase (signer, witness or approver).
@@ -46,7 +46,7 @@ export interface Recipient {
   /**
    * The status of the recipient processing the document.
    */
-  status: String;
+  status: string;
 
   /**
    * The time zone of the recipient.
@@ -66,12 +66,12 @@ export interface Recipient {
   /**
    * Should this recipient be skipped.
    */
-  skipped: Boolean;
+  skipped: boolean;
 
   /**
    * Should this recipient nominate the next signer.
    */
-  nominate: Boolean;
+  nominate: boolean;
 
   /**
    * The date and time the invitation email was first opened
@@ -96,17 +96,17 @@ export interface Recipient {
   /**
    *  The problem description if email delivery has issues
    */
-  emailProblem: String;
+  emailProblem: string;
 
   /**
    *  The collection of fields on this signer may have completed
    */
-  elementConnection: [object];
+  elementConnection: [string, unknown];
 
   /**
    *  The reminder schedule to be used for this recipient.
    */
-  schedule: [object];
+  schedule: [string, unknown];
 }
 
 export type RoleType = "signer" | "witness" | "approver";
