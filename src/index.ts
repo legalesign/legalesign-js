@@ -1,5 +1,5 @@
-import {LegalesignConstructor} from '../types';
-import {loadScript, initLegalesign, LoadLegalesign} from './shared';
+import { LegalesignConstructor } from "../types";
+import { loadScript, initLegalesign, LoadLegalesign } from "./shared";
 
 let legalesignPromise: Promise<LegalesignConstructor | null> | null;
 let loadCalled = false;
@@ -9,7 +9,7 @@ const getLegalesignPromise: () => Promise<LegalesignConstructor | null> = () => 
     return legalesignPromise;
   }
 
-  legalesignPromise = loadScript(null).catch((error) => {
+  legalesignPromise = loadScript(null).catch(error => {
     // clear cache on error
     legalesignPromise = null;
     return Promise.reject(error);
@@ -21,7 +21,7 @@ const getLegalesignPromise: () => Promise<LegalesignConstructor | null> = () => 
 // own script injection.
 Promise.resolve()
   .then(() => getLegalesignPromise())
-  .catch((error) => {
+  .catch(error => {
     if (!loadCalled) {
       console.warn(error);
     }
@@ -32,7 +32,7 @@ export const loadLegalesign: LoadLegalesign = (...args) => {
   const startTime = Date.now();
 
   // if previous attempts are unsuccessful, will re-load script
-  return getLegalesignPromise().then((maybeLegalesign) =>
+  return getLegalesignPromise().then(maybeLegalesign =>
     initLegalesign(maybeLegalesign, args, startTime)
   );
 };

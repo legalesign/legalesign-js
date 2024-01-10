@@ -13,69 +13,70 @@ export interface Document {
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
-  object: 'document';
+  object: "document";
 
-   /**
+  /**
    * The title of a document that has been sent to one or more signers.
    */
-   name: String | null
+  name: String | null;
 
-   /**
+  /**
    * A short lease url for downloading or streaming the document.
    */
-  	link: String | null
+  link: String | null;
 
-   /**
+  /**
    * City/District/Suburb/Town/Village.
    */
-  	status: String
+  status: String;
 
-   /**
+  /**
    * The group object associated (currently) with this document.
    */
-  	group: Group
+  group: Group;
 
-   /**
+  /**
    * The whole template object that the document was made from.
    */
-    template: Template
+  template: Template;
 
-    /** 
-     * The ID of template that the document was made from (this is for more efficient mass document queries).
-     */
-	sourceTemplateId: string;
+  /**
+   * The ID of template that the document was made from (this is for more efficient mass document queries).
+   */
+  sourceTemplateId: string;
 
-	/** 
-     * The ISO 8601 date format of the time that this resource was created.
-     */
-	created: string;
-	/** 
-     * The ISO 8601 date format of the time that this resource was modified.
-     */
-	modified: string;
+  /**
+   * The ISO 8601 date format of the time that this resource was created.
+   */
+  created: string;
+  /**
+   * The ISO 8601 date format of the time that this resource was modified.
+   */
+  modified: string;
 
-	/** 
-     * The participants that received this document (if any)
-     */
-	recipients: [object];
+  /**
+   * The participants that received this document (if any)
+   */
+  recipients: [object];
 
-	/** 
-     * The audit log for this document (if any)
-     */    
-	auditLog: [object]
+  /**
+   * The audit log for this document (if any)
+   */
 
-	/** 
-     * The name of the sender
-     */
-	senderName: string;
+  auditLog: [object];
 
-	/** 
-     * The email of the sender
-     */
-	senderEmail: string;
+  /**
+   * The name of the sender
+   */
+  senderName: string;
 
-	/** 
-     * The unique identifier of the process that created this document
-     */
-	taskId: string;
+  /**
+   * The email of the sender
+   */
+  senderEmail: string;
+
+  /**
+   * The unique identifier of the process that created this document
+   */
+  taskId: string;
 }

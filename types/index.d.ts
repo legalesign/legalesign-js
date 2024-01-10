@@ -1,5 +1,9 @@
-import {LegalesignConstructor, LegalesignConstructorOptions, Legalesign} from './legalesign-js';
-export * from './legalesign-js';
+import {
+  LegalesignConstructor,
+  LegalesignConstructorOptions,
+  Legalesign
+} from "./legalesign-js";
+export * from "./legalesign-js";
 export const loadStripe: (
   publishableKey: string,
   options?: LegalesignConstructorOptions | undefined

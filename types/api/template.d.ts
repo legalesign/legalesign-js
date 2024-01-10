@@ -1,4 +1,4 @@
-import {Group} from "./group";
+import { Group } from "./group";
 
 /**
  * The Document object.
@@ -12,27 +12,25 @@ export interface Template {
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
-  object: 'template';
+  object: "template";
 
-   /**
+  /**
    * The title of a document that has been sent to one or more signers.
    */
-   name: String | null
+  name: String | null;
 
-   /**
+  /**
    * A short lease url for downloading or streaming the document.
    */
-  	link: String | null
+  link: String | null;
 
-   /**
+  /**
    * City/District/Suburb/Town/Village.
    */
-  	status: String
+  status: String;
 
-   /**
+  /**
    * The group object associated (currently) with this document.
    */
-  	group: Group
-
-
+  group: Group;
 }

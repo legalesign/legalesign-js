@@ -1,1 +1,1 @@
-export * from './legalesign';
+export * from "./legalesign";

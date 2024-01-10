@@ -1,4 +1,4 @@
-import {Legalesign, LegalesignConstructor} from '../types';
+import { Legalesign, LegalesignConstructor } from "../types";
 
 export type LoadLegalesign = (
   ...args: Parameters<LegalesignConstructor>
@@ -12,10 +12,10 @@ export interface LoadParams {
 // containing the package.json version
 declare const _VERSION: string;
 
-const V3_URL = 'https://js.legalesign.com/v3';
+const V3_URL = "https://js.legalesign.com/v3";
 const V3_URL_REGEX = /^https:\/\/js\.legalesign\.com\/v3\/?(\?.*)?$/;
 const EXISTING_SCRIPT_MESSAGE =
-  'loadStripe.setLoadParameters was called but an existing Legalesign.js script already exists in the document; existing script parameters will be used';
+  "loadStripe.setLoadParameters was called but an existing Legalesign.js script already exists in the document; existing script parameters will be used";
 
 export const findScript = (): HTMLScriptElement | null => {
   const scripts = document.querySelectorAll<HTMLScriptElement>(
@@ -37,15 +37,15 @@ export const findScript = (): HTMLScriptElement | null => {
 
 const injectScript = (params: null | LoadParams): HTMLScriptElement => {
   const queryString =
-    params && !params.advancedFraudSignals ? '?advancedFraudSignals=false' : '';
-  const script = document.createElement('script');
+    params && !params.advancedFraudSignals ? "?advancedFraudSignals=false" : "";
+  const script = document.createElement("script");
   script.src = `${V3_URL}${queryString}`;
 
   const headOrBody = document.head || document.body;
 
   if (!headOrBody) {
     throw new Error(
-      'Expected document.body not to be null. Legalesign.js requires a <body> element.'
+      "Expected document.body not to be null. Legalesign.js requires a <body> element."
     );
   }
 
@@ -59,7 +59,11 @@ const registerWrapper = (legalesign: any, startTime: number): void => {
     return;
   }
 
-  legalesign._registerWrapper({name: 'legalesign-js', version: _VERSION, startTime});
+  legalesign._registerWrapper({
+    name: "legalesign-js",
+    version: _VERSION,
+    startTime
+  });
 };
 
 let stripePromise: Promise<LegalesignConstructor | null> | null = null;
@@ -68,19 +72,22 @@ let onErrorListener: (() => void) | null = null;
 let onLoadListener: (() => void) | null = null;
 
 const onError = (reject: (reason?: any) => void) => () => {
-  reject(new Error('Failed to load Legalesign.js'));
+  reject(new Error("Failed to load Legalesign.js"));
 };
 
 const onLoad = (
   resolve: (
-    value: LegalesignConstructor | PromiseLike<LegalesignConstructor | null> | null
+    value:
+      | LegalesignConstructor
+      | PromiseLike<LegalesignConstructor | null>
+      | null
   ) => void,
   reject: (reason?: any) => void
 ) => () => {
   if (window.Legalesign) {
     resolve(window.Legalesign);
   } else {
-    reject(new Error('Legalesign.js not available'));
+    reject(new Error("Legalesign.js not available"));
   }
 };
 
@@ -93,7 +100,7 @@ export const loadScript = (
   }
 
   legalesignPromise = new Promise((resolve, reject) => {
-    if (typeof window === 'undefined' || typeof document === 'undefined') {
+    if (typeof window === "undefined" || typeof document === "undefined") {
       // Resolve to null when imported server side. This makes the module
       // safe to import in an isomorphic code base.
       resolve(null);
@@ -122,8 +129,8 @@ export const loadScript = (
         onErrorListener !== null
       ) {
         // remove event listeners
-        script.removeEventListener('load', onLoadListener);
-        script.removeEventListener('error', onErrorListener);
+        script.removeEventListener("load", onLoadListener);
+        script.removeEventListener("error", onErrorListener);
 
         // if script exists, but we are reloading due to an error,
         // reload script to trigger 'load' event
@@ -133,16 +140,16 @@ export const loadScript = (
 
       onLoadListener = onLoad(resolve, reject);
       onErrorListener = onError(reject);
-      script.addEventListener('load', onLoadListener);
+      script.addEventListener("load", onLoadListener);
 
-      script.addEventListener('error', onErrorListener);
+      script.addEventListener("error", onErrorListener);
     } catch (error) {
       reject(error);
       return;
     }
   });
   // Resets stripePromise on error
-  return legalesignPromise.catch((error) => {
+  return legalesignPromise.catch(error => {
     legalesignPromise = null;
     return Promise.reject(error);
   });
@@ -173,13 +180,13 @@ but received
     ${JSON.stringify(params)}
 `;
 
-  if (params === null || typeof params !== 'object') {
+  if (params === null || typeof params !== "object") {
     throw new Error(errorMessage);
   }
 
   if (
     Object.keys(params).length === 1 &&
-    typeof params.advancedFraudSignals === 'boolean'
+    typeof params.advancedFraudSignals === "boolean"
   ) {
     return params;
   }

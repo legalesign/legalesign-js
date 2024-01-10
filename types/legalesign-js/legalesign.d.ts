@@ -1,4 +1,4 @@
-import * as api from '../api';
+import * as api from "../api";
 
 export interface Legalesign {
   /////////////////////////////
@@ -10,7 +10,6 @@ export interface Legalesign {
    *
    */
   send(options?: object): string;
-
 }
 
 /**
@@ -45,44 +44,43 @@ export interface LegalesignConstructorOptions {
    * Override your account's [API version](https://legalesign.com/docs/api/versioning).
    */
   apiVersion?: string;
-
 }
 
 export type LegalesignErrorType =
   /**
    * Failure to connect to Legalesign's API.
    */
-  | 'api_connection_error'
+  | "api_connection_error"
 
   /**
    * API errors cover any other type of problem (e.g., a temporary problem with Legalesign's servers), and are extremely uncommon.
    */
-  | 'api_error'
+  | "api_error"
 
   /**
    * Failure to properly authenticate yourself in the request.
    */
-  | 'authentication_error'
+  | "authentication_error"
 
   /**
    * Idempotency errors occur when an `Idempotency-Key` is re-used on a request that does not match the first request's API endpoint and parameters.
    */
-  | 'idempotency_error'
+  | "idempotency_error"
 
   /**
    * Invalid request errors arise when your request has invalid parameters.
    */
-  | 'invalid_request_error'
+  | "invalid_request_error"
 
   /**
    * Too many requests hit the API too quickly.
    */
-  | 'rate_limit_error'
+  | "rate_limit_error"
 
   /**
    * Errors triggered by our client-side libraries when failing to validate fields (e.g., when a card number or expiration date is invalid or incomplete).
    */
-  | 'validation_error';
+  | "validation_error";
 
 export interface LegalesignError {
   /**

@@ -1,55 +1,56 @@
-import {Recipient, Field} from '../api';
+import { Recipient, Field } from "../api";
 
 /**
  * All the permissible settings for an invidual document to be sent
- */ 
+ */
+
 export interface DocumentSendSettingsInput {
-	/**
-	 *  The title to give the newly created document
-	 */
-	title: string
-	/**
-	 *  The group whose settings will be used to process this document (and reported in)
-	 */
-	groupId: string;
+  /**
+   *  The title to give the newly created document
+   */
+  title: string;
 
-	/**
-	 *  The template originally used (if any)
-	 */
-	templateId: string | null;
-	/** 
-	 * The list of Recipients for the document.
-	 */
-	recipients: [Recipient]
-	
-	/**
-	 * All the values to fill in on the signer fields
-	 */
-	participantFields: [Field]
+  /**
+   *  The group UUID whose settings will be used to process this document (and reported in)
+   */
+  groupId: string;
 
-	/**
-	 * All the values to fill in on the sender fields
-	 */
-	senderFields: [Field]
+  /**
+   *  The template originally used (if any)
+   */
+  templateId: string | null;
+  /**
+   * The list of Recipients for the document.
+   */
+  recipients: [Recipient];
 
-	/**
-	 * Allow copying of the final document
-	 */
-	allowCopying: boolean | false;
-	
+  /**
+   * All the values to fill in on the signer fields
+   */
+  participantFields: [Field];
 
-	/**
-	 * Allow printing of the final document
-	 */
-	allowPrinting: boolean | false;
-	
-	/**
-	 * The tag to apply to the final document in the Legalesign system
-	 */
-	tag: string;
-	
-	/**
-	 * Determines if the recipients will be sent in order or all at the same time
-	 */
-	sequentialSigning: boolean | false;
+  /**
+   * All the values to fill in on the sender fields
+   */
+  senderFields: [Field];
+
+  /**
+   * Allow copying of the final document
+   */
+  allowCopying: boolean;
+
+  /**
+   * Allow printing of the final document
+   */
+  allowPrinting: boolean;
+
+  /**
+   * The tag to apply to the final document in the Legalesign system
+   */
+  tag: string;
+
+  /**
+   * Determines if the recipients will be sent in order or all at the same time
+   */
+  sequentialSigning: boolean;
 }

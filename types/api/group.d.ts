@@ -7,49 +7,50 @@ export interface Group {
   /**
    * Unique identifier for the group.
    */
-	id: string;
+  id: string;
 
-   /**
+  /**
    * String representing the object's type. Objects of the same type share the same value.
    */
-  object: 'group';
+  object: "group";
 
-	/** 
-     * The organisation to which owns and can administer this group.
-     */
-	organisation: Organisation
+  /**
+   * The organisation to which owns and can administer this group.
+   */
+  organisation: Organisation;
 
-	/**
-     * The name of the group.
-     */ 
-	name: string;
+  /**
+   * The name of the group.
+   */
 
-	/** 
-     * The publc name of the group, used for external circulation.
-     */
-	publicName: string | null;
+  name: string;
 
-	/**
-     *  All users that have been enrolled in this group.
-     */
-	// memberConnection(
-	// 	first: Int,
-	// 	after: ID,
-	// 	last: Int,
-	// 	before: ID
-	// ): GroupMemberConnection
-	
-    /** 
-     * The contacts that this group has saved for reuse.
-     */
-	// contactConnection(
-	// 	first: Int,
-	// 	after: ID,
-	// 	last: Int,
-	// 	before: ID,
-	// 	filter: AWSJSON
-	// ): ContactConnection
-	/** The draft documents this user has prepared.
+  /**
+   * The publc name of the group, used for external circulation.
+   */
+  publicName: string | null;
+
+  /**
+   *  All users that have been enrolled in this group.
+   */
+  // memberConnection(
+  // 	first: Int,
+  // 	after: ID,
+  // 	last: Int,
+  // 	before: ID
+  // ): GroupMemberConnection
+
+  /**
+   * The contacts that this group has saved for reuse.
+   */
+  // contactConnection(
+  // 	first: Int,
+  // 	after: ID,
+  // 	last: Int,
+  // 	before: ID,
+  // 	filter: AWSJSON
+  // ): ContactConnection
+  /** The draft documents this user has prepared.
 	draftConnection: DraftConnection
 	/** The retention period in days of attachments.
 	attachmentRetention: Int!
