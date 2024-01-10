@@ -1,4 +1,4 @@
-import * as api from '../api';
+import {Recipient, Field} from '../api';
 
 /**
  * All the permissible settings for an invidual document to be sent

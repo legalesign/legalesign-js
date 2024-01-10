@@ -88,7 +88,7 @@ export interface Recipient {
 	/**
 	 *  The collection of fields on this signer may have completed
 	 */
-	elementConnection: DocumentElementConnection
+	elementConnection: [object]
 	
 	/**
 	 *  The reminder schedule to be used for this recipient.
