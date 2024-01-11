@@ -1,17 +1,3 @@
-import { SendOptions } from "./sendOptions";
-
-export interface Legalesign {
-  /////////////////////////////
-  /// The start point for all actions on the Legalesign SDK
-  /////////////////////////////
-
-  /**
-   * Send filled templates off to the Legalesign API to be distributed and signed.
-   *
-   */
-  send(sendOptions?: SendOptions): string;
-}
-
 /**
  * Use `Legalesign(organisationId, options?)` to create an instance of the `Legalesign` object.
  * The Legalesign object is your entrypoint to the rest of the Legalesign.js SDK.
@@ -28,21 +14,21 @@ export interface LegalesignConstructor {
   /**
    * Initialization options.
    */
-  options?: LegalesignConstructorOptions;
+  options: LegalesignConstructorOptions;
 }
 
 export interface LegalesignConstructorOptions {
   /**
    * The username for the account you use to run API requests.
    */
-  apiUser?: string;
+  apiUser: string;
 
   /**
    * The password for the account you use to run API requests.
    */
-  apiPassword?: string;
+  apiPassword: string;
   /**
-   * Optionally override your account's [API version](https://legalesign.com/docs/api/versioning).
+   * Optionally override your account's [API version](https://console.legalesign.com).
    */
   apiVersion?: string | null;
 }
