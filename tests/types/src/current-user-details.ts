@@ -1,4 +1,5 @@
 import { assert, Has } from "conditional-type-checks";
+import { Legalesign } from "../../../src/legalesign";
 
 /* 
     Our sample code uses the graphql-request module, you can alter it to use whatever
@@ -37,6 +38,10 @@ const results = `query ViewMyDetails {
     }
   }`;
 
+  test {
+    const lesign = new Legalesign(new LegalesignConstructor())
+    Legalesign.query
+  }
   assert()
 // The returned JSON
 console.log(results);
