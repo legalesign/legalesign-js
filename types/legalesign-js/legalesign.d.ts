@@ -1,4 +1,4 @@
-import * as api from "../api";
+import { SendOptions } from "./sendOptions";
 
 export interface Legalesign {
   /////////////////////////////
@@ -9,41 +9,42 @@ export interface Legalesign {
    * Send filled templates off to the Legalesign API to be distributed and signed.
    *
    */
-  send(options?: object): string;
+  send(sendOptions?: SendOptions): string;
 }
 
 /**
- * Use `Legalesign(publishableKey, options?)` to create an instance of the `Legalesign` object.
+ * Use `Legalesign(organisationId, options?)` to create an instance of the `Legalesign` object.
  * The Legalesign object is your entrypoint to the rest of the Legalesign.js SDK.
- *
- * Your Legalesign publishable [API key] is required when calling this function, as it identifies you to Legalesign.
  *
  * When you’re ready to send documents, replace the test key with your live key in production.
  */
 export interface LegalesignConstructor {
-  (
-    /**
-     * Your publishable key.
-     */
-    publishableKey: string,
+  /**
+   * Specifying a connected organisation ID (e.g., `24BFMpJ1svR5A89k`) allows you to send documents on behalf of that account,
+   * if you don't know this [check your account page] (https://console.legalesign.com).
+   */
+  organisationId: string;
 
-    /**
-     * Initialization options.
-     */
-    options?: LegalesignConstructorOptions
-  ): Legalesign;
+  /**
+   * Initialization options.
+   */
+  options?: LegalesignConstructorOptions;
 }
 
 export interface LegalesignConstructorOptions {
   /**
-   * Specifying a connected account ID (e.g., `acct_24BFMpJ1svR5A89k`) allows you to send documents on behalf of that account.
+   * The username for the account you use to run API requests.
    */
-  legalesignAccount?: string;
+  apiUser?: string;
 
   /**
-   * Override your account's [API version](https://legalesign.com/docs/api/versioning).
+   * The password for the account you use to run API requests.
    */
-  apiVersion?: string;
+  apiPassword?: string;
+  /**
+   * Optionally override your account's [API version](https://legalesign.com/docs/api/versioning).
+   */
+  apiVersion?: string | null;
 }
 
 export type LegalesignErrorType =

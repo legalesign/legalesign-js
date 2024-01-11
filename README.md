@@ -15,6 +15,6 @@ npm install @legalesign/legalesign-js
 ### Instantiate the Legalesign SDK object
 
 All actions are accessed through the `Legalesign` object so our first objective should
-always be to create an authenticated version of it. 
+always be to create an authenticated version of it.
 
-`const legalesign = `
+`const legalesign =`

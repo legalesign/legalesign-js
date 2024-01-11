@@ -4,7 +4,7 @@ import { Recipient, Field } from "../api";
  * All the permissible settings for an invidual document to be sent
  */
 
-export interface SingleSendSettings {
+export interface SendOptions {
   /**
    *  The title to give the newly created document
    */

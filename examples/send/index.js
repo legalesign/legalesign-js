@@ -1,5 +1,5 @@
-import {Legalesign} from "../../types"
+import { Legalesign } from "../../types";
 
-const legalesign = Legalesign('test_123');
+const legalesign = Legalesign("test_123");
 
 legalesign.Send();
