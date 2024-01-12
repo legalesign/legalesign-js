@@ -17,8 +17,8 @@ export class Legalesign {
   constructor(legalesignConstructor: LegalesignConstructor) {
     this.options = legalesignConstructor.options;
     this.organisationId = legalesignConstructor.organisationId;
-    
-    const setup = async()=> {
+
+    const setup = async () => {
       this.client = new GraphQLClient(
         "https://7hfrjecmwjgehp3q2d3c2fbi6m.appsync-api.eu-west-2.amazonaws.com/graphql",
         {
@@ -29,8 +29,8 @@ export class Legalesign {
             )
           }
         }
-      );  
-    }
+      );
+    };
 
     setup();
   }
@@ -50,7 +50,6 @@ export class Legalesign {
    *
    */
   async query(graphQLQuery: string): Promise<string> {
-
     return await this.client.request(graphQLQuery);
   }
 
