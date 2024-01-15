@@ -4,10 +4,10 @@ describe("Get basic user information", () => {
   test("it should return group information for this user and account", () => {
     // Create an instance of the legalesign SDK
     const lesign = new Legalesign({
-      organisationId: "1234",
+      organisationId:  process.env.REACT_APP_test_organisation || '',
       options: {
-        apiUser: "alex.weinle@legalesign.com",
-        apiPassword: "@Testdemo123"
+        apiUser: process.env.REACT_APP_test_user || '',
+        apiPassword: process.env.REACT_APP_test_password || ''
       }
     });
 
