@@ -43,7 +43,7 @@ describe("Get basic user information", () => {
   });
 
   test("it should send a document using the basic example template", async () => {
-    // Create an instance of the legalesign SDK
+    
     const lesign = new Legalesign({
       organisationId: process.env.TEST_ORGANISATION || "",
       options: {
@@ -53,14 +53,16 @@ describe("Get basic user information", () => {
     });
 
     const result = await lesign.send({
-      title: "Test Document",
+      title: "SDK Test Document",
       groupId: "Z3JwZGVtbzE=",
       templateId: "dHBsNzhkZTEwZTAtNTEzZi0xMWVlLWE2NDgtMDIzNmQyNjAzYjlh",
       recipients: [
         {
           email: "alex.weinle@legalesign.com",
           firstName: "TESTALEX",
-          lastName: "TESTWHY"
+          lastName: "TESTWHY",
+          roleId: "cm9sNzhlMTkxZmUtNTEzZi0xMWVlLWE2NDgtMDIzNmQyNjAzYjlh", 
+          experience: "ZXhwZGVtbzE=",
         }
       ]
     });

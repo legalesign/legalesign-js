@@ -40,8 +40,17 @@ export class Legalesign {
    * Send one or more templates with recipients to the Legalesign API to be distributed and signed.
    *
    */
-  async send(sendOptions: SendOptions): Promise<boolean> {
-    return this.client.request(parseSingleSend(sendOptions));
+  async send(sendOptions: SendOptions): Promise<any> {
+    await this.setup();
+    try {
+      const mut = parseSingleSend(sendOptions);
+      console.log(mut)
+      const response = await this.client.request(mut);
+      return response;
+    }catch(e) {
+      return e;
+    }
+
   }
 
   /**

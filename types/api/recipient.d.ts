@@ -3,15 +3,9 @@
  */
 export interface Recipient {
   /**
-   * Unique identifier for the group.
+   * Unique identifier for the recipient (if created yet).
    */
   id?: string;
-
-  /**
-   * The name of the group.
-   */
-
-  name?: string;
 
   /**
    * The publc name of the group, used for external circulation.
@@ -36,7 +30,7 @@ export interface Recipient {
   /**
    * The role name that the recipient plays when looking at the document.
    */
-  role?: string;
+  roleId: string;
 
   /**
    * The role type in lowercase (signer, witness or approver).
