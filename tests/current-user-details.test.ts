@@ -1,35 +1,59 @@
-import { Legalesign } from "../src/legalesign";
+import { Legalesign, SendOptions } from "../src/legalesign";
+import "dotenv/config";
+import { getAccessToken } from "../src/tokenizer";
 
 describe("Get basic user information", () => {
-  test("it should return group information for this user and account", () => {
+  test("it should login correctly", async () => {
+    // Create an instance of the legalesign SDK
+    const token = await getAccessToken(
+      process.env.TEST_USER || "",
+      process.env.TEST_PASSWORD || ""
+    );
+    expect(token).toBeDefined();
+  });
+  test("it should return group information for this user and account", async () => {
     // Create an instance of the legalesign SDK
     const lesign = new Legalesign({
-      organisationId:  process.env.REACT_APP_test_organisation || '',
+      organisationId: process.env.TEST_ORGANISATION || "",
       options: {
-        apiUser: process.env.REACT_APP_test_user || '',
-        apiPassword: process.env.REACT_APP_test_password || ''
+        apiUser: process.env.TEST_USER || "",
+        apiPassword: process.env.TEST_PASSWORD || ""
       }
     });
 
     // Send a basic query that gets the current users details
-    const jsonResult = lesign.query(`query ViewMyDetails {
-      user {
-        id
-        name
-        email
-        memberConnection {
-          groupMembers {
-            id
-            name
-            group {
+    const jsonResult = await lesign.query(`query ViewMyDetails {
+        user {
+          id
+          name
+          email
+          memberConnection {
+            groupMembers {
               id
               name
+              group {
+                id
+                name
+              }
             }
           }
         }
-      }
-    }`);
+      }`);
+    expect(jsonResult).toHaveProperty("user");
+  });
 
-    console.log(jsonResult);
+  test("it should send a document using the basic example template", async () => {
+    // Create an instance of the legalesign SDK
+    const lesign = new Legalesign({
+      organisationId: process.env.TEST_ORGANISATION || "",
+      options: {
+        apiUser: process.env.TEST_USER || "",
+        apiPassword: process.env.TEST_PASSWORD || ""
+      }
+    });
+
+    const result = lesign.send(new SendOptions());
+
+    expect(result).toBeDefined();
   });
 });

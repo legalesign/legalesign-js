@@ -12,7 +12,7 @@ npm install @legalesign/legalesign-js
 
 ## Example Code for Node.js (Server side integration)
 
-You'll need several .env variables if you want to run the Jest tests in this SDK, but 
+You'll need several .env variables if you want to run the Jest tests in this SDK, but
 this can be used to ensure that your organisation is properly set up and licensed. Most
 of these items can be found in Legalesign Console organisation settings.
 
@@ -29,7 +29,6 @@ REACT_APP_user_pools_web_client_id=
 REACT_APP_appsync_graphqlEndpoint=
 REACT_APP_region=
 REACT_APP_clearing_bucket=
-
 
 ### Instantiate the Legalesign SDK object
 

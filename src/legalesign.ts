@@ -4,7 +4,7 @@ import {
   SendOptions
 } from "../types/legalesign-js";
 import { GraphQLClient } from "graphql-request";
-import { getToken } from "./tokenizer";
+import { getAccessToken } from "./tokenizer";
 
 /////////////////////////////
 /// The start point for all actions on the Legalesign SDK
@@ -17,22 +17,22 @@ export class Legalesign {
   constructor(legalesignConstructor: LegalesignConstructor) {
     this.options = legalesignConstructor.options;
     this.organisationId = legalesignConstructor.organisationId;
+  }
 
-    const setup = async () => {
+  async setup(): Promise<void> {
+    if (!this.client) {
       this.client = new GraphQLClient(
-        "https://7hfrjecmwjgehp3q2d3c2fbi6m.appsync-api.eu-west-2.amazonaws.com/graphql",
+        "https://k2howlr3ynfy3lbx7oxz4qyrlq.appsync-api.eu-west-2.amazonaws.com/graphql",
         {
           headers: {
-            Authorization: await getToken(
+            Authorization: await getAccessToken(
               this.options.apiUser,
               this.options.apiPassword
             )
           }
         }
       );
-    };
-
-    setup();
+    }
   }
 
   /**
@@ -50,6 +50,8 @@ export class Legalesign {
    *
    */
   async query(graphQLQuery: string): Promise<string> {
+    await this.setup();
+
     return await this.client.request(graphQLQuery);
   }
 
