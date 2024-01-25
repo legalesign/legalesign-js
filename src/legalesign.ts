@@ -5,6 +5,7 @@ import {
 } from "../types/legalesign-js";
 import { GraphQLClient } from "graphql-request";
 import { getAccessToken } from "./tokenizer";
+import { parseSingleSend } from "./sendParser";
 
 /////////////////////////////
 /// The start point for all actions on the Legalesign SDK
@@ -36,13 +37,11 @@ export class Legalesign {
   }
 
   /**
-   * Send filled templates off to the Legalesign API to be distributed and signed.
+   * Send one or more templates with recipients to the Legalesign API to be distributed and signed.
    *
    */
-  async send(sendOptions?: SendOptions): Promise<boolean> {
-    if (sendOptions?.groupId) return true;
-
-    return false;
+  async send(sendOptions: SendOptions): Promise<boolean> {
+    return this.client.request(parseSingleSend(sendOptions));
   }
 
   /**

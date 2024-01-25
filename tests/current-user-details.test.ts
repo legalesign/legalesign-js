@@ -1,4 +1,4 @@
-import { Legalesign, SendOptions } from "../src/legalesign";
+import { Legalesign } from "../src/legalesign";
 import "dotenv/config";
 import { getAccessToken } from "../src/tokenizer";
 
@@ -52,7 +52,18 @@ describe("Get basic user information", () => {
       }
     });
 
-    const result = lesign.send(new SendOptions());
+    const result = await lesign.send({
+      title: "Test Document",
+      groupId: "Z3JwZGVtbzE=",
+      templateId: "dHBsNzhkZTEwZTAtNTEzZi0xMWVlLWE2NDgtMDIzNmQyNjAzYjlh",
+      recipients: [
+        {
+          email: "alex.weinle@legalesign.com",
+          firstName: "TESTALEX",
+          lastName: "TESTWHY"
+        }
+      ]
+    });
 
     expect(result).toBeDefined();
   });

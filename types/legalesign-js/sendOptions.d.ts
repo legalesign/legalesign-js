@@ -28,30 +28,30 @@ export interface SendOptions {
   /**
    * (optional) All the values to fill in on the signer fields (if any).
    */
-  participantFields: [Field] | null;
+  participantFields?: [Field] | null;
 
   /**
    * (optional) All the values to fill in on the sender fields (if any).
    */
-  senderFields: [Field] | null;
+  senderFields?: [Field] | null;
 
   /**
    * Allow copying of the final document
    */
-  allowCopying: boolean;
+  allowCopying?: boolean;
 
   /**
    * Allow printing of the final document
    */
-  allowPrinting: boolean;
+  allowPrinting?: boolean;
 
   /**
    * (optional) The tag to apply to the final document in the Legalesign system
    */
-  tag: string | null;
+  tag?: string | null;
 
   /**
    * Determines if the recipients will be sent in order or all at the same time
    */
-  sequentialSigning: boolean;
+  sequentialSigning?: boolean;
 }
