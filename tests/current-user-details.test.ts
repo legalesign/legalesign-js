@@ -66,7 +66,7 @@ describe("Get basic user information", () => {
         }
       ]
     });
-
-    expect(result).toBeDefined();
+    
+    expect(result?.send).toBeDefined();
   });
 });

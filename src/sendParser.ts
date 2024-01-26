@@ -6,7 +6,7 @@ import { SendOptions } from "../types/legalesign-js";
 
 export const parseSingleSend = (sendOptions: SendOptions): string => {
   return `mutation sendSingleDocument {
-        send(input: 
+        send(input: {
             title: "${sendOptions.title}", 
             templateId: "${sendOptions.templateId}", 
             sequentialSigning: ${sendOptions.sequentialSigning ? true : false}, 
@@ -14,16 +14,23 @@ export const parseSingleSend = (sendOptions: SendOptions): string => {
             tag: "", 
             allowPrinting: ${sendOptions.sequentialSigning ? true : false}, 
             allowCopying: ${sendOptions.sequentialSigning ? true : false}, 
-            recipients: [{id: "cm9sNzhlMTkxZmUtNTEzZi0xMWVlLWE2NDgtMDIzNmQyNjAzYjlh", order: 0, 
-            signerIndex: 1, role: "", 
-            roleId: "cm9sNzhlMTkxZmUtNTEzZi0xMWVlLWE2NDgtMDIzNmQyNjAzYjlh", 
-            experience: "ZXhwZGVtbzE=", firstName: "Alex", 
-            attachments: ["YXR0ODczNTA1ZDQtODMxMy0xMWVlLWJjMTAtMGE5NjMyYmVlYTAw"], 
-            lastName: "Why", email: "alex.weinle@legalesign.com", 
-            schedule: null, 
-            scheduleId: "c2NoNDMz", 
-            expiryDate: null, 
-            timeZone: "Europe/London", 
-            skipped: false, message: "sdfsdfsdf"}]
-        }`;
+            recipients: [{id: "cm9sNzhlMTkxZmUtNTEzZi0xMWVlLWE2NDgtMDIzNmQyNjAzYjlh", 
+              order: 0, 
+              signerIndex: 1, 
+              role: "", 
+              roleId: "cm9sNzhlMTkxZmUtNTEzZi0xMWVlLWE2NDgtMDIzNmQyNjAzYjlh", 
+              experience: "ZXhwZGVtbzE=", 
+              firstName: "Simon", 
+              attachments: ["YXR0ODczNTA1ZDQtODMxMy0xMWVlLWJjMTAtMGE5NjMyYmVlYTAw"], 
+              lastName: "SDK-Last-Name", email: "alex.weinle@legalesign.com", 
+              schedule: null, 
+              scheduleId: "c2NoNDMz", 
+              expiryDate: null, 
+              timeZone: "Europe/London", 
+              skipped: false, message: "MESSAGE FROM SDK"}],
+            senderFields:[],
+            participantFields:[]            
+        }
+        )
+      }`;
 };
