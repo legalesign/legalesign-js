@@ -55,18 +55,18 @@ describe("Get basic user information", () => {
     const result = await lesign.send({
       title: "SDK Test Document",
       groupId: "Z3JwZGVtbzE=",
-      templateId: "dHBsNzhkZTEwZTAtNTEzZi0xMWVlLWE2NDgtMDIzNmQyNjAzYjlh",
+      templateId: "dHBsYTRiYmUzMmMtZDdjZi0xMWVlLTkzNzItMGExYzgyYTMyMzM5",
       recipients: [
         {
           email: "alex.weinle@legalesign.com",
           firstName: "TESTALEX",
           lastName: "TESTWHY",
-          roleId: "cm9sNzhlMTkxZmUtNTEzZi0xMWVlLWE2NDgtMDIzNmQyNjAzYjlh", 
+          roleId: "dHBsYTRiYmUzMmMtZDdjZi0xMWVlLTkzNzItMGExYzgyYTMyMzM5", 
           experience: "ZXhwZGVtbzE=",
         }
       ]
     });
-    
+    console.log(result.send)
     expect(result?.send).toBeDefined();
   });
 });
