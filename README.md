@@ -17,18 +17,17 @@ this can be used to ensure that your organisation is properly set up and license
 of these items can be found in Legalesign Console organisation settings.
 
 Here are the minimum settings you'll need to provide
-REACT_APP_test_organisation=<Organisation UUID>
-REACT_APP_test_user=<Usually an email address of the user account to use for SDK API  calls>
-REACT_APP_test_password=<The password of the API call user>
+TEST_ORGANISATION=<Organisation UUID>
+TEST_USER=<Usually an email address of the user account to use for SDK API  calls>
+TEST_PASSWORD=<The password of the API call user>
 
 Additionally you can set the following items for testing or support purposes
 
-REACT_APP_domain=
-REACT_APP_cognito_identity_pool_id=
-REACT_APP_user_pools_web_client_id=
-REACT_APP_appsync_graphqlEndpoint=
-REACT_APP_region=
-REACT_APP_clearing_bucket=
+cognito_identity_pool_id=
+user_pools_web_client_id=
+appsync_graphqlEndpoint=
+region=
+clearing_bucket=
 
 ### Instantiate the Legalesign SDK object
 
