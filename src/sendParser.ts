@@ -1,8 +1,31 @@
+import { Recipient } from "../types/api";
 import { SendOptions } from "../types/legalesign-js";
 
 /////////////////////////////
 /// Verifies SendOptions and parses them into graphQL mutations
 /////////////////////////////
+
+
+export const parseRecipient = (recipient: Recipient, index: number): string => {
+  return `{
+    id: "${recipient.id}", 
+    order: ${index}, 
+    signerIndex: ${index + 1}, 
+    role: "", 
+    roleId: "${recipient.roleId}", 
+    experience: "ZXhwZGVtbzE=", 
+    firstName: "${recipient.firstName}", 
+    lastName: "${recipient.lastName}", 
+    email: "${recipient.email}", 
+    attachments: [], 
+    schedule: null, 
+    scheduleId: null, 
+    expiryDate: null, 
+    timeZone: "Europe/London", 
+    skipped: false, 
+    message: "MESSAGE FROM SDK"
+  }`;
+};
 
 export const parseSingleSend = (sendOptions: SendOptions): string => {
   return `mutation sendSingleDocument {
@@ -14,20 +37,8 @@ export const parseSingleSend = (sendOptions: SendOptions): string => {
             tag: "", 
             allowPrinting: ${sendOptions.sequentialSigning ? true : false}, 
             allowCopying: ${sendOptions.sequentialSigning ? true : false}, 
-            recipients: [{id: "cm9sNzhlMTkxZmUtNTEzZi0xMWVlLWE2NDgtMDIzNmQyNjAzYjlh", 
-              order: 0, 
-              signerIndex: 1, 
-              role: "", 
-              roleId: "cm9sNzhlMTkxZmUtNTEzZi0xMWVlLWE2NDgtMDIzNmQyNjAzYjlh", 
-              experience: "ZXhwZGVtbzE=", 
-              firstName: "Simon", 
-              attachments: ["YXR0ODczNTA1ZDQtODMxMy0xMWVlLWJjMTAtMGE5NjMyYmVlYTAw"], 
-              lastName: "SDK-Last-Name", email: "alex.weinle@legalesign.com", 
-              schedule: null, 
-              scheduleId: "c2NoNDMz", 
-              expiryDate: null, 
-              timeZone: "Europe/London", 
-              skipped: false, message: "MESSAGE FROM SDK"}],
+            documentCCEmail: [],
+            recipients: ${sendOptions.recipients.map((r, index) => parseRecipient(r, index))},
             senderFields:[],
             participantFields:[]            
         }

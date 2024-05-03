@@ -23,15 +23,31 @@ TEST_PASSWORD=<The password of the API call user>
 
 Additionally you can set the following items for testing or support purposes
 
-cognito_identity_pool_id=
-user_pools_web_client_id=
-appsync_graphqlEndpoint=
-region=
-clearing_bucket=
+cognito_identity_pool_id=<overrides the deault>
+user_pools_web_client_id=<overrides the deault>
+appsync_graphqlEndpoint=<overrides the deault>
+region=<overrides the deault>
+clearing_bucket=<overrides the deault>
 
 ### Instantiate the Legalesign SDK object
 
 All actions are accessed through the `Legalesign` object so our first objective should
 always be to create an authenticated version of it.
 
-`const legalesign =`
+```typescript
+const legalesign = new Legalesign({
+      organisationId: process.env.TEST_ORGANISATION || "",
+      options: {
+        apiUser: process.env.TEST_USER || "",
+        apiPassword: process.env.TEST_PASSWORD || ""
+      }
+});
+```
+If you aren't using environment variables in your project feel free to replace these with 
+you development stacks variable store or the actual values only if you are sure the codebase
+is secure.
+
+## Using SDK to upload files for use on Legalesign platform
+
+The SDK allows you to upload several types of files for use as templates, drafts and other reasons. All these
+files pass through virus and content checking to ensure the safety of your customers.

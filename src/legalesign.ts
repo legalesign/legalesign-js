@@ -1,11 +1,14 @@
 import {
   LegalesignConstructor,
   LegalesignConstructorOptions,
-  SendOptions
+  SendOptions,
+  FileOptions
 } from "../types/legalesign-js";
 import { GraphQLClient } from "graphql-request";
 import { getAccessToken } from "./tokenizer";
 import { parseSingleSend } from "./sendParser";
+import { S3Client, ListBucketsCommand, PutObjectCommand, PutObjectCommandInput } from "@aws-sdk/client-s3";
+import *  as fs from 'fs';
 
 /////////////////////////////
 /// The start point for all actions on the Legalesign SDK
@@ -44,14 +47,41 @@ export class Legalesign {
     await this.setup();
     try {
       const mut = parseSingleSend(sendOptions);
-      console.log(mut)
+      
       const response = await this.client.request(mut);
       return response;
-    }catch(e) {
+    } catch (e) {
       return e;
     }
-
   }
+
+  /**
+   * Upload one of the specific file types for use by Legalesign.
+   *
+   */
+    async upload(fileOptions: FileOptions): Promise<any> {
+      await this.setup();
+      try {
+        // a client can be shared by different commands.
+        const client = new S3Client({ region: "eu-west-2" });
+
+        const params = {
+          /** input parameters */
+        };
+        
+        const command = new PutObjectCommand({
+          "Bucket": "dev-lon-files-clearing",
+          "Key": `drafts/${"tsttestsetsetest"}/${fileOptions.fileName}`,
+          "Body" : fs.readFileSync(fileOptions.path, "utf8")
+        });
+        
+        const data = await client.send(command);
+
+        return data;
+      } catch (e) {
+        return e;
+      }
+    }
 
   /**
    * Send filled templates off to the Legalesign API to be distributed and signed.

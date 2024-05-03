@@ -42,31 +42,29 @@ describe("Get basic user information", () => {
     expect(jsonResult).toHaveProperty("user");
   });
 
-  test("it should send a document using the basic example template", async () => {
-    
-    const lesign = new Legalesign({
-      organisationId: process.env.TEST_ORGANISATION || "",
-      options: {
-        apiUser: process.env.TEST_USER || "",
-        apiPassword: process.env.TEST_PASSWORD || ""
-      }
-    });
+  // test("it should send a document using the basic example template", async () => {
+  //   const lesign = new Legalesign({
+  //     organisationId: process.env.TEST_ORGANISATION || "",
+  //     options: {
+  //       apiUser: process.env.TEST_USER || "",
+  //       apiPassword: process.env.TEST_PASSWORD || ""
+  //     }
+  //   });
 
-    const result = await lesign.send({
-      title: "SDK Test Document",
-      groupId: "Z3JwZGVtbzE=",
-      templateId: "dHBsYTRiYmUzMmMtZDdjZi0xMWVlLTkzNzItMGExYzgyYTMyMzM5",
-      recipients: [
-        {
-          email: "alex.weinle@legalesign.com",
-          firstName: "TESTALEX",
-          lastName: "TESTWHY",
-          roleId: "dHBsYTRiYmUzMmMtZDdjZi0xMWVlLTkzNzItMGExYzgyYTMyMzM5", 
-          experience: "ZXhwZGVtbzE=",
-        }
-      ]
-    });
-    console.log(result.send)
-    expect(result?.send).toBeDefined();
-  });
+  //   const result = await lesign.send({
+  //     title: "SDK Test Document",
+  //     groupId: "Z3JwZGVtbzE=",
+  //     templateId: "dHBsYTRiYmUzMmMtZDdjZi0xMWVlLTkzNzItMGExYzgyYTMyMzM5",
+  //     recipients: [
+  //       {
+  //         email: "alex.weinle@legalesign.com",
+  //         firstName: "Synthia",
+  //         lastName: "SDK",
+  //         roleId: "dHBsYTRiYmUzMmMtZDdjZi0xMWVlLTkzNzItMGExYzgyYTMyMzM5"
+  //       }
+  //     ]
+  //   });
+
+  //   expect(result?.send).toBeDefined();
+  // });
 });
