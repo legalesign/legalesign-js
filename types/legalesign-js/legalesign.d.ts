@@ -76,9 +76,9 @@ export interface LegalesignError {
   type: LegalesignErrorType;
 
   /**
-   * For card errors, the ID of the failed charge
+   * For send errors, the ID of the failed task
    */
-  charge?: string;
+  task?: string;
 
   /**
    * For some errors that could be handled programmatically, a short string indicating the [error code] reported.

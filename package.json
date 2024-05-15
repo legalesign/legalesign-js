@@ -1,6 +1,6 @@
 {
     "name": "@legalesign/legalesign-js",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "legalesign.js SDK and Types",
     "repository": "github:legalesign/legalesign-js",
     "main": "dist/legalesign.js",

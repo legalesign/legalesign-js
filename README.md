@@ -1,6 +1,8 @@
 # Legalesign.js ES Module
 
-Allows typescript friendly versions of the Legalesign core objects and Send calls, including single and multi-document.
+Allows typescript friendly versions of the Legalesign core objects and Send calls, including single and multi-document. Note
+that you'll need to be using the latest Console version of legalesign UI to see some of the features used in the SDK, such
+as `Drafts`.
 
 ## Installation
 
@@ -21,7 +23,7 @@ TEST_ORGANISATION=<Organisation UUID>
 TEST_USER=<Usually an email address of the user account to use for SDK API  calls>
 TEST_PASSWORD=<The password of the API call user>
 
-Additionally you can set the following items for testing or support purposes
+Additionally you can set the following items for testing, isolation or support purposes;
 
 cognito_identity_pool_id=<overrides the deault>
 user_pools_web_client_id=<overrides the deault>
@@ -43,9 +45,11 @@ const legalesign = new Legalesign({
       }
 });
 ```
-If you aren't using environment variables in your project feel free to replace these with 
-you development stacks variable store or the actual values only if you are sure the codebase
-is secure.
+
+If you aren't using environment variables in your project, feel free to replace these with 
+your variable store or the actual values. Hard-coding values isn't best practice, you should 
+get some advice from your system administrator is this is acceptable for anything other 
+than practice code.
 
 ## Using SDK to upload files for use on Legalesign platform
 
