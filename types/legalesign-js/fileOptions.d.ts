@@ -1,5 +1,6 @@
 /**
- * All the settings for a file to be uploaded to Legalesign storage
+ * All the settings for a file to be uploaded to Legalesign storage, note that these will be type and virus checked
+ * in clearing, so it is best to make file transations asynchronous.
  */
 
 export interface FileOptions {
@@ -14,8 +15,8 @@ export interface FileOptions {
     fileName: string;
   
       /**
-     *  The title to give the newly created document
+     *  The types of document that can be stored on the platform
      */
-     fileType: "TEMPLATE" | "DRAFT" | "";
+     fileType: "templates" | "drafts" | "logo";
   
   }

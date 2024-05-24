@@ -11,14 +11,15 @@ describe("Get basic user information", () => {
     );
     expect(token).toBeDefined();
   });
+
   test("it should return group information for this user and account", async () => {
     // Create an instance of the legalesign SDK
     const lesign = new Legalesign({
       organisationId: process.env.TEST_ORGANISATION || "",
       options: {
         apiUser: process.env.TEST_USER || "",
-        apiPassword: process.env.TEST_PASSWORD || ""
-      }
+        apiPassword: process.env.TEST_PASSWORD || "",
+      },
     });
 
     // Send a basic query that gets the current users details
@@ -41,30 +42,4 @@ describe("Get basic user information", () => {
       }`);
     expect(jsonResult).toHaveProperty("user");
   });
-
-  // test("it should send a document using the basic example template", async () => {
-  //   const lesign = new Legalesign({
-  //     organisationId: process.env.TEST_ORGANISATION || "",
-  //     options: {
-  //       apiUser: process.env.TEST_USER || "",
-  //       apiPassword: process.env.TEST_PASSWORD || ""
-  //     }
-  //   });
-
-  //   const result = await lesign.send({
-  //     title: "SDK Test Document",
-  //     groupId: "Z3JwZGVtbzE=",
-  //     templateId: "dHBsYTRiYmUzMmMtZDdjZi0xMWVlLTkzNzItMGExYzgyYTMyMzM5",
-  //     recipients: [
-  //       {
-  //         email: "alex.weinle@legalesign.com",
-  //         firstName: "Synthia",
-  //         lastName: "SDK",
-  //         roleId: "dHBsYTRiYmUzMmMtZDdjZi0xMWVlLTkzNzItMGExYzgyYTMyMzM5"
-  //       }
-  //     ]
-  //   });
-
-  //   expect(result?.send).toBeDefined();
-  // });
 });

@@ -1,45 +1,63 @@
 import { FileOptions } from "../../types/legalesign-js";
+import { Legalesign } from "../legalesign";
 import { Parameters } from "../parameters";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import * as fs from "fs";
-
+import { v4 as uuid } from "uuid";
 /**
  * Send and track all kinds of files to be used inside the legalesign platform
  * including templates, drafts, images for logos and emails.
- * 
- * This class performs a stateful single upload with the fileOptions given
+ *
+ * This class performs a stateless upload with the fileOptions given
  * in the constructor.
+ * 
+ * This class should be called via the Legalesign core object, i.e 
+ *      const legalesign = new Legalesign({params});
+ *  
+ *      await legalesign.uploader.upload( {fileOptions} )
  *
  */
 export class Uploader {
-  fileOptions: FileOptions;
+  legalesign: Legalesign;
   result: string;
 
-  constructor(fileOptions: FileOptions) {
-    this.fileOptions = fileOptions;
+  constructor(legalesign: Legalesign) {
+    this.legalesign = legalesign;
   }
 
   /**
-   * Upload one of the specific file types for use by Legalesign.
+   * 
+   * @description Upload one of the specific file types for use by Legalesign.
+   * 
+   * @returns a generated UUID used to identify the draft JSON file
    *
    */
-  public async upload(userId: string): Promise<boolean> {
-    try {      
-      const s3 = new S3Client({ region: "eu-west-2" });
+  public async upload(fileOptions: FileOptions): Promise<string | null> {
+    try {
+      // Ensure we're connected.
+      await this.legalesign.setup();
+
+      const s3 = new S3Client({ region: "eu-west-2", credentials: {
+        accessKeyId: "",
+        secretAccessKey: ""
+        }});
+
+      const uniqueFileId = uuid();
 
       const command = new PutObjectCommand({
         Bucket: Parameters.buckets.clearing,
-        Key: `${this.fileOptions.fileType}/${userId}/${
-          this.fileOptions.fileName
-        }`,
-        Body: fs.readFileSync(this.fileOptions.path, "utf8"),
+        Key: `${fileOptions.fileType}/${this.legalesign.userInformation.id}/${uniqueFileId}.json`,
+        Body: fs.readFileSync(fileOptions.path, "utf8"),
       });
 
-      await s3.send(command);
+      const response = await s3.send(command);
 
-      return true;
+      // return the newly create UUID for the draft
+      if (response) return uniqueFileId;
+
+      return null;
     } catch (e) {
-      return e;
+      return null;
     }
   }
 }
