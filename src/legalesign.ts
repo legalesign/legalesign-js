@@ -1,16 +1,12 @@
 import {
   LegalesignConstructor,
   LegalesignConstructorOptions,
-  FileOptions
 } from "../types/legalesign-js";
 import { GraphQLClient } from "graphql-request";
 import { getAccessToken } from "./tokenizer";
 import { Parameters } from "./parameters";
 import { Statements } from "./statements/statements";
-import { Uploader } from "./extensions/uploader";
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
-import { v4 as uuid } from "uuid";
-import * as fs from "fs";
+import { Uploader, Selector, Sender } from "./extensions";
 
 // Basic information loaded immediately after the Graph QL is set up.
 type UserInformation = { id: string; email: string };
@@ -20,11 +16,16 @@ type UserInformation = { id: string; email: string };
 ///////////////////////////////////////////////////////////////
 export class Legalesign {
   protected options: LegalesignConstructorOptions;
+  private accessToken: undefined | string;
   public organisationId: string;
   public client: GraphQLClient;
   public userInformation: UserInformation;
+  
+  // Class extensions
   public uploader: Uploader;
-  private accessToken: undefined | string;
+  public selector: Selector;
+  public sender: Sender;
+
 
   constructor(legalesignConstructor: LegalesignConstructor) {
     this.options = legalesignConstructor.options;
@@ -32,6 +33,8 @@ export class Legalesign {
 
     // Add the action classes as publicly accessible members
     this.uploader = new Uploader(this);
+    this.selector = new Selector(this);
+    this.sender = new Sender(this);
   }
 
   /**
@@ -58,48 +61,6 @@ export class Legalesign {
     }
   }
 
-    /**
-   * 
-   * @description Upload one of the specific file types for use by Legalesign.
-   * 
-   * @returns a generated UUID used to identify the draft JSON file
-   *
-   */
-    public async upload(fileOptions: FileOptions): Promise<string | null> {
-      try {
-        // Ensure we're connected.
-        await this.setup();
-  
-        const s3 = await new S3Client({ region: "eu-west-2"});
-      
-        const uniqueFileId = await uuid().toString();
-  
-        const command = new PutObjectCommand({
-          Bucket: Parameters.buckets.clearing,
-          Key: `${fileOptions.fileType}/${this.userInformation.id}/${uniqueFileId}.json`,
-          Body: fs.readFileSync(fileOptions.path, "utf8"),
-        });
-  
-        await s3.send(command);
-        console.log(uniqueFileId)
-  
-        // return the newly create UUID for the draft
-        return uniqueFileId;
-        } catch (e) {
-        console.log(e)
-        return null;
-      }
-    }
-
-  /**
-   * Send filled templates off to the Legalesign API to be distributed and signed.
-   *
-   */
-  public async query(graphQLQuery: string): Promise<string> {
-    await this.setup();
-
-    return await this.client.request(graphQLQuery);
-  }
 
   /**
    * Return true if the security connection for this object is valid.

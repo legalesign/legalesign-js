@@ -23,7 +23,7 @@ describe("Get basic user information", () => {
     });
 
     // Send a basic query that gets the current users details
-    const jsonResult = await lesign.query(`query ViewMyDetails {
+    const jsonResult = await lesign.selector.query(`query ViewMyDetails {
         user {
           id
           name

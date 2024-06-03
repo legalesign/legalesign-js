@@ -23,7 +23,7 @@ describe("Get draft information", () => {
       },
     });
 
-    const fileUUID = await lesign.upload({
+    const fileUUID = await lesign.uploader.upload({
       path: `${__dirname}/draft.json`,
       fileName: `${uuid()}.json`,
       fileType: "drafts",

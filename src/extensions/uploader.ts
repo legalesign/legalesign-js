@@ -4,6 +4,7 @@ import { Parameters } from "../parameters";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import * as fs from "fs";
 import { v4 as uuid } from "uuid";
+
 /**
  * Send and track all kinds of files to be used inside the legalesign platform
  * including templates, drafts, images for logos and emails.
@@ -32,32 +33,29 @@ export class Uploader {
    * @returns a generated UUID used to identify the draft JSON file
    *
    */
-  public async upload(fileOptions: FileOptions): Promise<string | null> {
-    try {
-      // Ensure we're connected.
-      await this.legalesign.setup();
-
-      const s3 = new S3Client({ region: "eu-west-2", credentials: {
-        accessKeyId: "",
-        secretAccessKey: ""
-        }});
-
-      const uniqueFileId = uuid();
-
-      const command = new PutObjectCommand({
-        Bucket: Parameters.buckets.clearing,
-        Key: `${fileOptions.fileType}/${this.legalesign.userInformation.id}/${uniqueFileId}.json`,
-        Body: fs.readFileSync(fileOptions.path, "utf8"),
-      });
-
-      const response = await s3.send(command);
-
-      // return the newly create UUID for the draft
-      if (response) return uniqueFileId;
-
-      return null;
-    } catch (e) {
-      return null;
+     public async upload(fileOptions: FileOptions): Promise<string | null> {
+      try {
+        // Ensure we're connected.
+        await this.legalesign.setup();
+  
+        const s3 = await new S3Client({ region: "eu-west-2"});
+      
+        const uniqueFileId = await uuid().toString();
+  
+        const command = new PutObjectCommand({
+          Bucket: Parameters.buckets.clearing,
+          Key: `${fileOptions.fileType}/${this.legalesign.userInformation.id}/${uniqueFileId}.json`,
+          Body: fs.readFileSync(fileOptions.path, "utf8"),
+        });
+  
+        await s3.send(command);
+        console.log(uniqueFileId)
+  
+        // return the newly create UUID for the draft
+        return uniqueFileId;
+        } catch (e) {
+        console.log(e)
+        return null;
+      }
     }
-  }
 }
