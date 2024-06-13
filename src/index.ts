@@ -39,8 +39,8 @@ export const loadLegalesign: LoadLegalesign = (...args) => {
 
 declare global {
   interface Window {
-    // Stripe.js must be loaded directly from https://js.stripe.com/v3, which
-    // places a `Stripe` object on the window
+    // Legalesign.js must be loaded directly from https://js.legalesign.com/v3, which
+    // places a `Legalesign` object on the window
     Legalesign?: LegalesignConstructor;
   }
 }

@@ -3,7 +3,8 @@
  */
 export interface Recipient {
   /**
-   * Unique identifier for the recipient (if created yet).
+   * Unique identifier for the recipient (if created yet). If you don't supply this then the
+   * SDK will attempt to look the recipient up by roleId
    */
   id?: string;
 
