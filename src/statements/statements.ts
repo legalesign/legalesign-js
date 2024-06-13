@@ -1,9 +1,8 @@
-
 ////////////////////////////////////////////////////////////////////////
 /// Statements used by the SDK for common information calls
 ////////////////////////////////////////////////////////////////////////
 export const Statements = {
-    userInformation: `query userInformation {
+  userInformation: `query userInformation {
         user {
           id
           email
@@ -16,5 +15,23 @@ export const Statements = {
           }
         }
       }
-    }`
-}
+    }`,
+  template: `query templateInformation($templateId) {
+      template(id: $templateId) {
+        id
+        title
+        link
+        roles {
+          id
+          name
+        }
+        elementConnection {
+          elements {           
+            id 
+            name
+          }
+        }
+      }
+    }
+  }`,
+};

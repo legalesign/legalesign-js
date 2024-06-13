@@ -1,7 +1,7 @@
 /**
  * The Recipient object represents signers, witnesses and approvers that can receive a document.
  */
-export interface Recipient {
+export interface IRecipient {
   /**
    * Unique identifier for the recipient (if created yet). If you don't supply this then the
    * SDK will attempt to look the recipient up by roleId
@@ -29,9 +29,11 @@ export interface Recipient {
   lastName: string;
 
   /**
-   * The role name that the recipient plays when looking at the document.
+   * The role name that the recipient plays when looking at the document. If
+   * you don't supply this then sender will attempt to look them up and allocate
+   * them in order.
    */
-  roleId: string;
+  roleId?: string;
 
   /**
    * The role type in lowercase (signer, witness or approver).

@@ -1,10 +1,8 @@
-import { group } from "console";
-import { Legalesign, SendOptions } from "../src/legalesign";
+import { Legalesign } from "../src/legalesign";
+import { SendOptions } from "../types/legalesign-js";
 import "dotenv/config";
 
 describe("Send a template.", () => {
-  
-
   test("Send a template with recipient.", async () => {
     // Create a draft file
     const lesign = new Legalesign({
@@ -19,21 +17,21 @@ describe("Send a template.", () => {
     // or by running graphQL queries.
     const sendOptions: SendOptions = {
       title: "SDK Test Simple Send",
-      groupId: "Z3JwZGVtbzE=", 
-      templateId: "dHBsNTY5NGNiNmEtMjhjMy0xMWVmLWEyZWUtMGE3ZjBiZjVlZDNi", 
+      groupId: "Z3JwZGVtbzE=",
+      templateId: "dHBsNTY5NGNiNmEtMjhjMy0xMWVmLWEyZWUtMGE3ZjBiZjVlZDNi",
       recipients: [
-        { 
+        {
           email: "",
           firstName: "",
-          lastName: ""
-        }
-      ]
-    }
+          lastName: "",
+        },
+      ],
+    };
 
     const response = await lesign.sender.send(sendOptions);
 
-    console.log(response)
+    console.log(response);
 
-    expect( typeof response === "string").toBeTruthy();
+    expect(typeof response === "string").toBeTruthy();
   });
 });

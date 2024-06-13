@@ -1,5 +1,5 @@
-import { Group } from "./group";
-import { Template } from "./template";
+import { IGroup } from "./igroup";
+import { ITemplate } from "./itemplate";
 
 /**
  * The Document object.
@@ -18,27 +18,27 @@ export interface Document {
   /**
    * The title of a document that has been sent to one or more signers.
    */
-  name: String | null;
+  name: string | null;
 
   /**
    * A short lease url for downloading or streaming the document.
    */
-  link: String | null;
+  link: string | null;
 
   /**
    * City/District/Suburb/Town/Village.
    */
-  status: String;
+  status: string;
 
   /**
    * The group object associated (currently) with this document.
    */
-  group: Group;
+  group: IGroup;
 
   /**
    * The whole template object that the document was made from.
    */
-  template: Template;
+  template: ITemplate;
 
   /**
    * The ID of template that the document was made from (this is for more efficient mass document queries).

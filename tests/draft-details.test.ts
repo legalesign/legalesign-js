@@ -3,7 +3,7 @@ import "dotenv/config";
 import { getAccessToken } from "../src/tokenizer";
 import { v4 as uuid } from "uuid";
 
-describe("Get draft information", () => {
+describe("Get template information", () => {
   test("it should login correctly", async () => {
     // Create an instance of the legalesign SDK
     const token = await getAccessToken(

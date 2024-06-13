@@ -1,9 +1,9 @@
-import { Organisation } from "./organisation";
+import { IOrganisation } from "./iorganisation";
 
 /**
  * The Group object can represent departments, users of similar role types in an organisation or common interest users from different organisations.
  */
-export interface Group {
+export interface IGroup {
   /**
    * Unique identifier for the group.
    */
@@ -17,7 +17,7 @@ export interface Group {
   /**
    * The organisation to which owns and can administer this group.
    */
-  organisation: Organisation | null;
+  organisation: IOrganisation | null;
 
   /**
    * The name of the group.

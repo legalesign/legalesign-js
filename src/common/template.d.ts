@@ -1,9 +1,9 @@
-import { Group } from "./group";
+import { ITemplate, IGroup } from "../../types/api";
 
 /**
  * The Document object.
  */
-export interface Template {
+export class Template implements ITemplate {
   /**
    * Unique identifier for the document.
    */
@@ -32,5 +32,5 @@ export interface Template {
   /**
    * The group object associated (currently) with this document.
    */
-  group: Group;
+  group: IGroup;
 }

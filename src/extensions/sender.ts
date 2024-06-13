@@ -20,6 +20,7 @@ export class Sender {
   constructor(legalesign: Legalesign) {
     this.legalesign = legalesign;
   }
+      
 
   /**
    * 
@@ -31,6 +32,10 @@ export class Sender {
     async send(sendOptions: SendOptions): Promise<boolean> {
       await this.legalesign.setup();
       try {
+        
+        this.fillRecipientRoles(sendOptions);
+
+
         const mut = parseSingleSend(sendOptions);
   
         await this.legalesign.client.request(mut);
@@ -40,4 +45,35 @@ export class Sender {
         return false;
       }
     }
+
+    // Fill in recipient roles assuming the correct order if not populated
+    fillRecipientRoles = (sendOptions) => {
+
+      const filledRecipients = sendOptions.recipients.map(r => r.roleId ? this.fetchRole(r) : r )
+
+      return {...sendOptions, recipients: filledRecipients};
+
+    }
+
+    fetchRole = (recipient) => {
+      const jsonResult = await this.legalesign.selector.query(`query GetTemplate {
+        user {
+          id
+          name
+          email
+          memberConnection {
+            groupMembers {
+              id
+              name
+              group {
+                id
+                name
+              }
+            }
+          }
+        }
+      }`);
+    expect(jsonResult).toHaveProperty("user");
+    }
+
 }

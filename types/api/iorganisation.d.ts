@@ -1,4 +1,4 @@
-export interface Organisation {
+export interface IOrganisation {
   /**
    * Unique identifier for the group.
    */
