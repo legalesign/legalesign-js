@@ -1,5 +1,5 @@
 import { Legalesign } from "../src/legalesign";
-import { Statements } from "../src/statements/statements";
+import { Template } from "../src/common";
 
 import "dotenv/config";
 
@@ -15,8 +15,11 @@ describe("Get template information", () => {
       },
     });
 
-    // Send a basic query that gets the current users details
-    const jsonResult = await lesign.selector.query(Statements.template);
-    expect(jsonResult).toHaveProperty("user");
+    // Get a test template
+     
+    const t = new Template("dHBsNTY5NGNiNmEtMjhjMy0xMWVmLWEyZWUtMGE3ZjBiZjVlZDNi", lesign);
+
+  
+    expect(t).toHaveProperty("link");
   });
 });

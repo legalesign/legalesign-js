@@ -21,9 +21,9 @@ describe("Send a template.", () => {
       templateId: "dHBsNTY5NGNiNmEtMjhjMy0xMWVmLWEyZWUtMGE3ZjBiZjVlZDNi",
       recipients: [
         {
-          email: "",
-          firstName: "",
-          lastName: "",
+          email: "alex.weinle@legalesign.com",
+          firstName: "Alex",
+          lastName: "SDK",
         },
       ],
     };

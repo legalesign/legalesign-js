@@ -4,3 +4,4 @@ export * from "./itemplate";
 export * from "./iorganisation";
 export * from "./irecipient";
 export * from "./field";
+export * from "./ILegalesignObject";

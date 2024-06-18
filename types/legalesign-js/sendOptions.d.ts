@@ -1,4 +1,5 @@
-import { Recipient, Field } from "../api";
+import { Field } from "../api";
+import { Template, Recipient} from "../../src/common"
 
 /**
  * All the permissible settings for an invidual document to be sent
@@ -18,7 +19,7 @@ export interface SendOptions {
   /**
    *  The template UUID originally used (if any), if not supplied you must pass HTML.
    */
-  templateId: string | null;
+  templateId: string | Template | null;
 
   /**
    * The list of Recipients for the document, you must provide at least 1 recipient.

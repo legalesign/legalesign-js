@@ -1,4 +1,4 @@
-import { Recipient } from "../types/api";
+import { Recipient } from "../src/common"
 import { SendOptions } from "../types/legalesign-js";
 
 /////////////////////////////

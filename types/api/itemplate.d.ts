@@ -1,5 +1,3 @@
-import { IGroup } from "./igroup";
-
 /**
  * The Document object.
  */
@@ -10,27 +8,18 @@ export interface ITemplate {
   id: string;
 
   /**
-   * String representing the object's type. Objects of the same type share the same value.
+   * The title of a template.
    */
-  object: "template";
+  title: string | null;
 
   /**
-   * The title of a document that has been sent to one or more signers.
-   */
-  name: string | null;
-
-  /**
-   * A short lease url for downloading or streaming the document.
+   * A short lease url for downloading or streaming the template PDF.
    */
   link: string | null;
 
   /**
-   * City/District/Suburb/Town/Village.
+   * valid or invalid status.
    */
   status: string;
 
-  /**
-   * The group object associated (currently) with this document.
-   */
-  group: IGroup;
 }
