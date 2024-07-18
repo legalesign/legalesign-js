@@ -16,7 +16,7 @@ export const Statements = {
         }
       }
     }`,
-  templateFetch: `query templateInformation($templateId: ID!) {
+  templateFetch: `query template($templateId: ID!) {
       template(id: $templateId) {
         id
         title

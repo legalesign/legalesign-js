@@ -1,7 +1,7 @@
 /**
  * The Recipient object represents signers, witnesses and approvers that can receive a document.
  */
-export interface IRecipient {
+export type Recipient = {
   /**
    * Unique identifier for the recipient (if created yet). If you don't supply this then the
    * SDK will attempt to look the recipient up by roleId

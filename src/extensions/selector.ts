@@ -13,9 +13,10 @@ export class Selector {
     this.legalesign = legalesign;
   }
 
-      /**
+  /**
    * Run a query or mutation against the API.
    *
+   *  @returns a promise of a graphQL request
    */
   public async query(graphQLQuery: string, graphQLVariables?: Variables): Promise<string> {
     await this.legalesign.setup();

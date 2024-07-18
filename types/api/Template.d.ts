@@ -1,7 +1,7 @@
 /**
  * The Document object.
  */
-export interface ITemplate {
+export type Template = {
   /**
    * Unique identifier for the document.
    */

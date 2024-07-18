@@ -17,9 +17,10 @@ describe("Get template information", () => {
 
     // Get a test template
      
-    const t = new Template("dHBsNTY5NGNiNmEtMjhjMy0xMWVmLWEyZWUtMGE3ZjBiZjVlZDNi", lesign);
+    // const t = new Template("dHBsNTY5NGNiNmEtMjhjMy0xMWVmLWEyZWUtMGE3ZjBiZjVlZDNi", lesign);
 
-  
+    const t = lesign.factory.createInstance(Template, "dHBsNTY5NGNiNmEtMjhjMy0xMWVmLWEyZWUtMGE3ZjBiZjVlZDNi");
+
     expect(t).toHaveProperty("link");
   });
 });

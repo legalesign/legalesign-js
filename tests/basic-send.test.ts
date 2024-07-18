@@ -1,3 +1,4 @@
+import { Recipient } from "../src/common";
 import { Legalesign } from "../src/legalesign";
 import { SendOptions } from "../types/legalesign-js";
 import "dotenv/config";
@@ -20,11 +21,11 @@ describe("Send a template.", () => {
       groupId: "Z3JwZGVtbzE=",
       templateId: "dHBsNTY5NGNiNmEtMjhjMy0xMWVmLWEyZWUtMGE3ZjBiZjVlZDNi",
       recipients: [
-        {
+        new Recipient({
           email: "alex.weinle@legalesign.com",
           firstName: "Alex",
           lastName: "SDK",
-        },
+        })
       ],
     };
 

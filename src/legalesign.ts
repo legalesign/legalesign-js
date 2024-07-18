@@ -6,7 +6,7 @@ import { GraphQLClient } from "graphql-request";
 import { getAccessToken } from "./tokenizer";
 import { Parameters } from "./parameters";
 import { Statements } from "./statements/statements";
-import { Uploader, Selector, Sender } from "./extensions";
+import { Uploader, Selector, Sender, Factory } from "./extensions";
 
 // Basic information loaded immediately after the Graph QL is set up.
 type UserInformation = { id: string; email: string };
@@ -25,7 +25,7 @@ export class Legalesign {
   public uploader: Uploader;
   public selector: Selector;
   public sender: Sender;
-
+  public factory: Factory;
 
   constructor(legalesignConstructor: LegalesignConstructor) {
     this.options = legalesignConstructor.options;
@@ -35,6 +35,7 @@ export class Legalesign {
     this.uploader = new Uploader(this);
     this.selector = new Selector(this);
     this.sender = new Sender(this);
+    this.factory = new Factory(this);
   }
 
   /**

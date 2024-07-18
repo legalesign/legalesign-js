@@ -1,7 +1,7 @@
 /**
  * The Group object can represent departments, users of similar role types in an organisation or common interest users from different organisations.
  */
-export interface Field {
+export type Field = {
   /**
    * Unique identifier for the field.
    */
@@ -15,12 +15,12 @@ export interface Field {
   /**
    *  A value or preset value if known
    */
-  value: String;
+  value: string;
 
   /**
    *  A label string to display
    */
-  label: String;
+  label: string;
 
   /**
    *  The index of the signer for this field
@@ -30,5 +30,5 @@ export interface Field {
   /**
    *  The type of this field ()
    */
-  elementType: string; // TODO :: ElementType
+  elementType: 'text' | 'signature' | 'file' | 'image' | 'date' | 'autodate' | 'regex'; 
 }
