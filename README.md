@@ -38,17 +38,17 @@ always be to create an authenticated version of it.
 
 ```typescript
 const legalesign = new Legalesign({
-      organisationId: process.env.TEST_ORGANISATION || "",
-      options: {
-        apiUser: process.env.TEST_USER || "",
-        apiPassword: process.env.TEST_PASSWORD || ""
-      }
+  organisationId: process.env.TEST_ORGANISATION || "",
+  options: {
+    apiUser: process.env.TEST_USER || "",
+    apiPassword: process.env.TEST_PASSWORD || ""
+  }
 });
 ```
 
-If you aren't using environment variables in your project, feel free to replace these with 
-your variable store or the actual values. Hard-coding values isn't best practice, you should 
-get some advice from your system administrator is this is acceptable for anything other 
+If you aren't using environment variables in your project, feel free to replace these with
+your variable store or the actual values. Hard-coding values isn't best practice, you should
+get some advice from your system administrator is this is acceptable for anything other
 than practice code.
 
 ## Using SDK to upload files for use on Legalesign platform

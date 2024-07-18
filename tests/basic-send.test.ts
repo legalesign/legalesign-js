@@ -10,8 +10,8 @@ describe("Send a template.", () => {
       organisationId: process.env.TEST_ORGANISATION || "",
       options: {
         apiUser: process.env.TEST_USER || "",
-        apiPassword: process.env.TEST_PASSWORD || "",
-      },
+        apiPassword: process.env.TEST_PASSWORD || ""
+      }
     });
 
     // You can get group / template / recipient ID the URL in dashboard and editor
@@ -24,9 +24,9 @@ describe("Send a template.", () => {
         new Recipient({
           email: "alex.weinle@legalesign.com",
           firstName: "Alex",
-          lastName: "SDK",
-        })
-      ],
+          lastName: "SDK"
+        }, lesign)
+      ]
     };
 
     const response = await lesign.sender.send(sendOptions);

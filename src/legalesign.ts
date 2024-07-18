@@ -1,6 +1,6 @@
 import {
   LegalesignConstructor,
-  LegalesignConstructorOptions,
+  LegalesignConstructorOptions
 } from "../types/legalesign-js";
 import { GraphQLClient } from "graphql-request";
 import { getAccessToken } from "./tokenizer";
@@ -14,13 +14,13 @@ type UserInformation = { id: string; email: string };
 ///////////////////////////////////////////////////////////////
 /// The start point for all actions on the Legalesign SDK
 ///////////////////////////////////////////////////////////////
-export class Legalesign {
+class Legalesign {
   protected options: LegalesignConstructorOptions;
   private accessToken: undefined | string;
   public organisationId: string;
-  public client: GraphQLClient;
-  public userInformation: UserInformation;
-  
+  public client: GraphQLClient | undefined;
+  public userInformation: UserInformation | undefined;
+
   // Class extensions
   public uploader: Uploader;
   public selector: Selector;
@@ -48,12 +48,12 @@ export class Legalesign {
       this.accessToken = await getAccessToken(
         this.options.apiUser,
         this.options.apiPassword
-      )
+      );
 
       this.client = new GraphQLClient(Parameters.endpoints.graphQL, {
         headers: {
-          Authorization: this.accessToken,
-        },
+          Authorization: this.accessToken
+        }
       });
 
       // Get the essential user details
@@ -61,7 +61,6 @@ export class Legalesign {
       if ("user" in userInfo) this.userInformation = userInfo?.user;
     }
   }
-
 
   /**
    * Return true if the security connection for this object is valid.
@@ -73,3 +72,6 @@ export class Legalesign {
     return false;
   }
 }
+
+export { Legalesign };
+export default Legalesign;

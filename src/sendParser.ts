@@ -1,10 +1,9 @@
-import { Recipient } from "../src/common"
+import { Recipient } from "../src/common";
 import { SendOptions } from "../types/legalesign-js";
 
 /////////////////////////////
 /// Verifies SendOptions and parses them into graphQL mutations
 /////////////////////////////
-
 
 export const parseRecipient = (recipient: Recipient, index: number): string => {
   return `{
@@ -38,7 +37,9 @@ export const parseSingleSend = (sendOptions: SendOptions): string => {
             allowPrinting: ${sendOptions.sequentialSigning ? true : false}, 
             allowCopying: ${sendOptions.sequentialSigning ? true : false}, 
             documentCCEmail: [],
-            recipients: ${sendOptions.recipients.map((r, index) => parseRecipient(r, index))},
+            recipients: ${sendOptions.recipients.map((r, index) =>
+              parseRecipient(r, index)
+            )},
             senderFields:[],
             participantFields:[]            
         }

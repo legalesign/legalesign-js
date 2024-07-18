@@ -140,4 +140,4 @@ export type Group = {
 	/** Provides the group administrator with reporting data of the type specified in a date band.
 	reportData(start: AWSDateTime!, end: AWSDateTime!, reportType: ReportType = SIGNINGTIME): AWSJSON
     */
-}
+};

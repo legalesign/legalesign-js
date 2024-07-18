@@ -17,17 +17,17 @@ export interface User {
   /**
    * The array  of memberships of groups for this user.
    */
-   memberConnection: Group | null;
+  memberConnection: Group | null;
 
   /**
    * The name of the group.
    */
-   firstName: string;
+  firstName: string;
 
-   /**
+  /**
    * The name of the group.
    */
-   lastName: string;
+  lastName: string;
 
   /**
    * The publc name of the group, used for external circulation.

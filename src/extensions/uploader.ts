@@ -11,10 +11,10 @@ import { v4 as uuid } from "uuid";
  *
  * This class performs a stateless upload with the fileOptions given
  * in the constructor.
- * 
- * This class should be called via the Legalesign core object, i.e 
+ *
+ * This class should be called via the Legalesign core object, i.e
  *      const legalesign = new Legalesign({params});
- *  
+ *
  *      await legalesign.uploader.upload( {fileOptions} )
  *
  */
@@ -27,35 +27,35 @@ export class Uploader {
   }
 
   /**
-   * 
+   *
    * @description Upload one of the specific file types for use by Legalesign.
-   * 
+   *
    * @returns a generated UUID used to identify the draft JSON file
    *
    */
-     public async upload(fileOptions: FileOptions): Promise<string | null> {
-      try {
-        // Ensure we're connected.
-        await this.legalesign.setup();
-  
-        const s3 = await new S3Client({ region: "eu-west-2"});
-      
-        const uniqueFileId = await uuid().toString();
-  
-        const command = new PutObjectCommand({
-          Bucket: Parameters.buckets.clearing,
-          Key: `${fileOptions.fileType}/${this.legalesign.userInformation.id}/${uniqueFileId}.json`,
-          Body: fs.readFileSync(fileOptions.path, "utf8"),
-        });
-  
-        await s3.send(command);
-        console.log(uniqueFileId)
-  
-        // return the newly create UUID for the draft
-        return uniqueFileId;
-        } catch (e) {
-        console.log(e)
-        return null;
-      }
+  public async upload(fileOptions: FileOptions): Promise<string | null> {
+    try {
+      // Ensure we're connected.
+      await this.legalesign.setup();
+
+      const s3 = await new S3Client({ region: "eu-west-2" });
+
+      const uniqueFileId = await uuid().toString();
+
+      const command = new PutObjectCommand({
+        Bucket: Parameters.buckets.clearing,
+        Key: `${fileOptions.fileType}/${this.legalesign.userInformation.id}/${uniqueFileId}.json`,
+        Body: fs.readFileSync(fileOptions.path, "utf8")
+      });
+
+      await s3.send(command);
+      console.log(uniqueFileId);
+
+      // return the newly create UUID for the draft
+      return uniqueFileId;
+    } catch (e) {
+      console.log(e);
+      return null;
     }
+  }
 }

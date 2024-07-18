@@ -30,5 +30,12 @@ export type Field = {
   /**
    *  The type of this field ()
    */
-  elementType: 'text' | 'signature' | 'file' | 'image' | 'date' | 'autodate' | 'regex'; 
-}
+  elementType:
+    | "text"
+    | "signature"
+    | "file"
+    | "image"
+    | "date"
+    | "autodate"
+    | "regex";
+};

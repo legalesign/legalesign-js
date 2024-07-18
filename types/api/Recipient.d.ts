@@ -104,6 +104,6 @@ export type Recipient = {
    *  The reminder schedule to be used for this recipient.
    */
   schedule?: [string, unknown];
-}
+};
 
 export type RoleType = "signer" | "witness" | "approver";

@@ -26,19 +26,17 @@ export class Recipient extends LEObject {
       // This is an existing recipient fetch its details
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const t: any = legalesign.selector.query(Statements.templateFetch, {
-        templateId: input,
+        templateId: input
       });
 
       this.email = t?.data.recipient.email;
       this.firstName = t?.data.recipient.firstName;
       this.lastName = t?.data.recipient.lastName;
-      
     } else {
       super(null);
       this.email = input.email;
       this.firstName = input.firstName;
       this.lastName = input.lastName;
-      
     }
   }
 }

@@ -18,8 +18,8 @@ describe("Get basic user information", () => {
       organisationId: process.env.TEST_ORGANISATION || "",
       options: {
         apiUser: process.env.TEST_USER || "",
-        apiPassword: process.env.TEST_PASSWORD || "",
-      },
+        apiPassword: process.env.TEST_PASSWORD || ""
+      }
     });
 
     // Send a basic query that gets the current users details

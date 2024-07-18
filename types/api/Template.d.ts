@@ -21,5 +21,4 @@ export type Template = {
    * valid or invalid status.
    */
   status: string;
-
-}
+};

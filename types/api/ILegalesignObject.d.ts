@@ -6,5 +6,4 @@ export interface ILegalesignObject {
    * Unique identifier for the group.
    */
   id: string;
-  
 }

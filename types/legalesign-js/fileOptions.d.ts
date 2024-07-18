@@ -4,19 +4,18 @@
  */
 
 export interface FileOptions {
-    /**
-     *  The local path to the file you want to upload
-     */
-    path: string;
-  
-    /**
-     *  The title to give the newly created file
-     */
-    fileName: string;
-  
-      /**
-     *  The types of document that can be stored on the platform
-     */
-     fileType: "templates" | "drafts" | "logo";
-  
-  }
+  /**
+   *  The local path to the file you want to upload
+   */
+  path: string;
+
+  /**
+   *  The title to give the newly created file
+   */
+  fileName: string;
+
+  /**
+   *  The types of document that can be stored on the platform
+   */
+  fileType: "templates" | "drafts" | "logo";
+}

@@ -43,17 +43,15 @@ export interface Batch {
   /**
    * The unique identifier of the process that created this batch.
    */
-  requestId: String
+  requestId: String;
 
   /**
    * The ISO 8601 date format of the time that this resource was created.
    */
-  created: Date
+  created: Date;
 
   /**
    * The ISO 8601 date format of the time that this resource was modified.
    */
-  modified: Date
-
-
+  modified: Date;
 }

@@ -1,5 +1,5 @@
 import { Field } from "../api";
-import { Template, Recipient} from "../../src/common"
+import { Template, Recipient } from "../../src/common";
 
 /**
  * All the permissible settings for an invidual document to be sent
@@ -56,6 +56,3 @@ export interface SendOptions {
    */
   sequentialSigning?: boolean;
 }
-
-
-

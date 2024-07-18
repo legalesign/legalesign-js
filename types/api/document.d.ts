@@ -74,4 +74,4 @@ export type Document = {
    * The unique identifier of the process that created this document
    */
   taskId: string;
-}
+};

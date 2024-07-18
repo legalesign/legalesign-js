@@ -1,7 +1,6 @@
 import { LEObject } from "../common/";
 import { Legalesign } from "../legalesign";
 
-
 /**
  * Send and track all document on legalesign platform
  * including single, bulk and batch documents. This class should be called via the Legalesign core object.
@@ -15,7 +14,7 @@ import { Legalesign } from "../legalesign";
  */
 export class Factory {
   legalesign: Legalesign;
-  result: string;
+  result: string | undefined;
 
   constructor(legalesign: Legalesign) {
     this.legalesign = legalesign;
