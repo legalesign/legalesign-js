@@ -1,12 +1,6 @@
-import { Legalesign } from "../legalesign";
+import { Legalesign } from "../Legalesign";
 import { Statements } from "../statements/statements";
 import { LEObject } from "./LEObject";
-import { Role } from "./Role";
-
-type PageDimension = {
-  height: number;
-  width: number;
-};
 
 /**
  * The Template object used to easily fetch and handle template information.

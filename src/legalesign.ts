@@ -27,7 +27,7 @@ class Legalesign {
   public sender: Sender;
   public factory: Factory;
 
-  constructor(legalesignConstructor: LegalesignConstructor) {
+  public constructor(legalesignConstructor: LegalesignConstructor) {
     this.options = legalesignConstructor.options;
     this.organisationId = legalesignConstructor.organisationId;
 

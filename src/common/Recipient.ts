@@ -1,6 +1,5 @@
-import { Legalesign } from "../legalesign";
+import { Legalesign } from "../Legalesign";
 import { Statements } from "../statements/statements";
-import { LEObject } from "./LEObject";
 
 type createRecipientInput = {
   firstName: string;
@@ -10,18 +9,18 @@ type createRecipientInput = {
 /**
  * The Template object used to easily fetch and handle template information.
  */
-export class Recipient extends LEObject {
-  public id: string;
+export class Recipient {
+  public id: string | undefined;
   public email: string;
   public firstName: string;
   public lastName: string;
-  public created: Date;
-  public modified: Date;
-  public roleId: string;
+  public created: Date | undefined;
+  public modified: Date | undefined;
+  public roleId: string | undefined;
 
   constructor(input: string | createRecipientInput, legalesign: Legalesign) {
     if (typeof input === "string") {
-      super(input);
+ 
       this.id = input;
       // This is an existing recipient fetch its details
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -33,7 +32,7 @@ export class Recipient extends LEObject {
       this.firstName = t?.data.recipient.firstName;
       this.lastName = t?.data.recipient.lastName;
     } else {
-      super(null);
+  
       this.email = input.email;
       this.firstName = input.firstName;
       this.lastName = input.lastName;

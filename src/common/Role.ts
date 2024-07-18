@@ -1,4 +1,4 @@
-import { Legalesign } from "../legalesign";
+import { Legalesign } from "../Legalesign";
 import { Statements } from "../statements/statements";
 import { LEObject } from "./LEObject";
 

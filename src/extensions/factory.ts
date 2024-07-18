@@ -1,5 +1,5 @@
 import { LEObject } from "../common/";
-import { Legalesign } from "../legalesign";
+import { Legalesign } from "../Legalesign";
 
 /**
  * Send and track all document on legalesign platform

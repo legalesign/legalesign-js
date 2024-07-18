@@ -1,4 +1,4 @@
-import { Legalesign } from "../legalesign";
+import { Legalesign } from "../Legalesign";
 import { Variables } from "graphql-request";
 import { Statements } from "../statements/statements";
 import { Template } from "../../types";

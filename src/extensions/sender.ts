@@ -1,6 +1,6 @@
 import { SendOptions } from "../../types/legalesign-js";
 import { Recipient } from "../common/Recipient";
-import { Legalesign } from "../legalesign";
+import { Legalesign } from "../Legalesign";
 import { parseSingleSend } from "../sendParser";
 
 /**
@@ -16,7 +16,7 @@ import { parseSingleSend } from "../sendParser";
  */
 export class Sender {
   legalesign: Legalesign;
-  result: string;
+  result: string | undefined;
 
   constructor(legalesign: Legalesign) {
     this.legalesign = legalesign;
@@ -36,16 +36,19 @@ export class Sender {
 
       const mut = parseSingleSend(sendOptions);
 
-      await this.legalesign.client.request(mut);
-
+      if (this.legalesign.client) {
+        await this.legalesign.client.request(mut);
       return true;
+      } 
+      
+      return false;
     } catch (e) {
       return false;
     }
   }
 
   // Fill in recipient roles assuming the correct order if not populated
-  fillRecipientRoles = sendOptions => {
+  fillRecipientRoles = (sendOptions: SendOptions) => {
     const filledRecipients = sendOptions.recipients.map((r: Recipient) =>
       r.roleId ? this.fetchRole(r) : r
     );
@@ -54,7 +57,7 @@ export class Sender {
   };
 
   fetchRole = (r: Recipient) => {
-    const jsonResult = this.legalesign.selector.query(
+    return this.legalesign.selector.query(
       `query GetTemplate {
         user {
           id
@@ -75,6 +78,5 @@ export class Sender {
       { id: r.roleId }
     );
 
-    expect(jsonResult).toHaveProperty("user");
   };
 }

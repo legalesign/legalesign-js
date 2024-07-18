@@ -1,5 +1,5 @@
 import { Recipient } from "../src/common";
-import { Legalesign } from "../src/legalesign";
+import { Legalesign } from "../src/Legalesign";
 import { SendOptions } from "../types/legalesign-js";
 import "dotenv/config";
 
@@ -31,8 +31,6 @@ describe("Send a template.", () => {
 
     const response = await lesign.sender.send(sendOptions);
 
-    console.log(response);
-
-    expect(typeof response === "string").toBeTruthy();
+    expect(response).toBeTruthy();
   });
 });
