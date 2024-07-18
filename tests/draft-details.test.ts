@@ -1,4 +1,4 @@
-import { Legalesign } from "../src/legalesign";
+import { Legalesign } from "../src/Legalesign";
 import "dotenv/config";
 import { getAccessToken } from "../src/tokenizer";
 import { v4 as uuid } from "uuid";

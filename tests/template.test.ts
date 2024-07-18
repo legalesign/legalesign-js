@@ -1,4 +1,4 @@
-import { Legalesign } from "../src/legalesign";
+import { Legalesign } from "../src/Legalesign";
 import { Template } from "../src/common";
 
 import "dotenv/config";

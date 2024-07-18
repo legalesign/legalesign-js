@@ -20,7 +20,7 @@ import { v4 as uuid } from "uuid";
  */
 export class Uploader {
   legalesign: Legalesign;
-  result: string;
+  result: string | undefined;
 
   constructor(legalesign: Legalesign) {
     this.legalesign = legalesign;
@@ -37,6 +37,8 @@ export class Uploader {
     try {
       // Ensure we're connected.
       await this.legalesign.setup();
+
+      if(!this.legalesign.userInformation) throw('User undefined.')
 
       const s3 = await new S3Client({ region: "eu-west-2" });
 

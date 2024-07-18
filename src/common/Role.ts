@@ -8,8 +8,8 @@ import { LEObject } from "./LEObject";
 export class Role extends LEObject {
   public id: string;
   public title: string;
-  public created: Date;
-  public modified: Date;
+  public created: Date | undefined;
+  public modified: Date | undefined;
 
   constructor(id: string, legalesign: Legalesign) {
     super(id);
