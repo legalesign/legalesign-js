@@ -1,6 +1,7 @@
 {
   "name": "legalesign-js",
-  "version": "0.0.3",
+  "version": "0.0.4",
+  "type": "module",
   "main": "./dist/vite-vanilla-ts-lib-starter.cjs",
   "module": "./dist/vite-vanilla-ts-lib-starter.mjs",
   "exports": {
