@@ -24,27 +24,26 @@ export class Selector {
     graphQLQuery: string,
     _graphQLVariables?: string
   ): Promise<string> {
+    console.log(graphQLQuery);
     await this.legalesign.setup();
+      if (this.legalesign.accessToken) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const { data, status } = await axios.post<any>(
+          Parameters.endpoints.graphQL,
+          graphQLQuery,
+          {
+            headers: {
+              Authorization: this.legalesign.accessToken,
+            },
+          }
+        );
 
-    if (this.legalesign.accessToken) {
-      // Get the essential user details
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const { data, status } = await axios.post<any>(
-        Parameters.endpoints.graphQL,
-        graphQLQuery,
-        {
-          headers: {
-            Authorization: this.legalesign.accessToken,
-          },
-        }
-      );
+        console.log(status, _graphQLVariables);
 
-      console.log(status, _graphQLVariables);
+        return data;
+      }
 
-      return data;
-    }
-
-    return Promise.reject();
+      return Promise.reject();
   }
 
   /**

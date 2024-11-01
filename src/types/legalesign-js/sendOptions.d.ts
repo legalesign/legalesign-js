@@ -1,5 +1,4 @@
-import type { Field } from "../api/";
-import { Template, Recipient } from "../../common/";
+import type { Field, Template, Recipient } from "../api/";
 
 /**
  * All valid options for a single document send action.

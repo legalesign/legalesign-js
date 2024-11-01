@@ -1,0 +1,5 @@
+process.env.TEST_ORGANISATION="b3JnNTdjYWRjNmEtM2RmZC00MzA3LTk1MWEtOGVlNmIwOGVlYTg1"
+process.env.TEST_USER="it@legalesign.com"
+process.env.TEST_PASSWORD="D@dgy20T@sters"
+process.env.LOCAL_USER="alex.weinle@legalesign.com"
+process.env.LOCAL_PASSWORD="@TestDemo1234"

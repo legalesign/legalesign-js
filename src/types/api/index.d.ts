@@ -1,7 +1,8 @@
-export type * from "./Document";
-export type * from "./Group";
-export type * from "./Template";
-export type * from "./Organisation";
-export type * from "./Recipient";
-export type * from "./Field";
-export type * from "./ILegalesignObject";
+export type { Document } from "./Document";
+export type { Group } from "./Group";
+export type { Template } from "./Template";
+export type { Organisation } from "./Organisation";
+export type { Recipient } from "./Recipient";
+export type { Field } from "./Field";
+export type { ILegalesignObject } from "./ILegalesignObject";
+export type { BillingData } from "./Billing";

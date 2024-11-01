@@ -48,7 +48,7 @@ class Legalesign {
         this.options.apiUser,
         this.options.apiPassword
       );
-
+      try {
       // Get the essential user details
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const userInfo = await axios.post<any>(
@@ -60,9 +60,14 @@ class Legalesign {
           },
         }
       );
-
-      //if ("user" in userInfo) this.userInformation = userInfo?.user;
       console.log(userInfo);
+
+    } catch (e) {
+      console.log(e);
+
+    }
+      //if ("user" in userInfo) this.userInformation = userInfo?.user;
+
     }
   }
 

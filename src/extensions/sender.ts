@@ -1,5 +1,4 @@
-import { SendOptions } from "../types/legalesign-js";
-import { Recipient } from "../common/Recipient";
+import { SendOptions, Recipient } from "../types";
 import { Legalesign } from "../Legalesign";
 import { parseSingleSend } from "../SendParser";
 import { Parameters } from "../Parameters";
@@ -38,6 +37,10 @@ export class Sender {
       const mut = parseSingleSend(sendOptions);
 
       if (this.legalesign.accessToken) {
+
+        console.log(mut);
+        console.log(Parameters.endpoints.graphQL);
+
         // Get the essential user details
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const reqInfo = await axios.post<any>(
@@ -57,6 +60,7 @@ export class Sender {
 
       return false;
     } catch (e) {
+      console.log(e);
       return false;
     }
   }

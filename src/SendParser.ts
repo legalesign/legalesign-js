@@ -1,11 +1,11 @@
-import { Recipient } from "../src/common";
-import { SendOptions } from "./types";
+import { SendOptions, Recipient } from "./types";
 
-/////////////////////////////
-/// Verifies SendOptions and parses them into graphQL mutations
-/////////////////////////////
-
+/**
+ * Verifies SendOptions and parses them into graphQL mutations
+ */
 export const parseRecipient = (recipient: Recipient, index: number): string => {
+  // TODO find a usable experience ID and determine time zone
+
   return `{
     id: "${recipient.id}", 
     order: ${index}, 
